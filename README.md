@@ -15,7 +15,67 @@ grunt.loadNpmTasks('grunt-mocha-test');
 [getting_started]: https://github.com/cowboy/grunt/blob/master/docs/getting_started.md
 
 ## Documentation
-_(Coming soon)_
+
+A single task example
+
+```javascript
+/*global module:false*/
+module.exports = function(grunt) {
+
+  // Add our custom tasks.
+  grunt.loadNpmTasks('grunt-mocha-test');
+
+  // Project configuration.
+  grunt.initConfig({
+    mochaTest: {
+      files: ['test/**/*.test.js']
+    },
+    mochaTestConfig: {
+      options: {
+        reporter: 'nyan'        
+      }
+    }
+  });
+
+  // Default task.
+  grunt.registerTask('default', 'mochaTest');
+};
+```
+
+A multi task example
+
+```javascript
+/*global module:false*/
+module.exports = function(grunt) {
+
+  // Add our custom tasks.
+  grunt.loadNpmTasks('grunt-mocha-test');
+
+  // Project configuration.
+  grunt.initConfig({
+    mochaTest: {
+      default: ['test/**/*.test.js'],
+      withTimeout: ['test-timeout/**/*.test.js']
+    },
+    mochaTestConfig: {
+      default: {
+	    options: {
+	      reporter: 'nyan'        
+	    }
+      },
+      withTimeout: {
+	    options: {
+	      reporter: 'nyan',
+	      timeout: 1000     
+	    }
+      }
+    }
+  });
+
+  // Default task.
+  grunt.registerTask('default', 'mochaTest');
+};
+```
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].
