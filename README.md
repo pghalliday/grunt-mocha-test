@@ -54,11 +54,11 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     mochaTest: {
-      default: ['test/**/*.test.js'],
+      normal: ['test/**/*.test.js'],
       withTimeout: ['test-timeout/**/*.test.js']
     },
     mochaTestConfig: {
-      default: {
+      normal: {
 	    options: {
 	      reporter: 'nyan'        
 	    }
