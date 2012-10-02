@@ -1,4 +1,4 @@
-# grunt-test
+# grunt-mocha-test
 
 A grunt task for running server side mocha tests
 
@@ -8,7 +8,7 @@ Install this grunt plugin next to your project's [grunt.js gruntfile][getting_st
 Then add this line to your project's `grunt.js` gruntfile:
 
 ```javascript
-grunt.loadNpmTasks('grunt-test');
+grunt.loadNpmTasks('grunt-mocha-test');
 ```
 
 [grunt]: https://github.com/cowboy/grunt
