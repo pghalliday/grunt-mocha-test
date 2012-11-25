@@ -3,7 +3,7 @@
 A grunt task for running server side mocha tests
 
 ## Getting Started
-Install this grunt plugin next to your project's [grunt.js gruntfile][getting_started] with: `npm install grunt-test`
+Install this grunt plugin next to your project's [grunt.js gruntfile][getting_started] with: `npm install grunt-mocha-test`
 
 Then add this line to your project's `grunt.js` gruntfile:
 
