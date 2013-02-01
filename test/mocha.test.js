@@ -1,3 +1,5 @@
+/*global testVar:false */
+
 var proxyquire = require('proxyquire'),
 	mochaMock = require('./mocks/Mocha.mock'),
 	ModuleMock = require('./mocks/Module.mock'),
@@ -41,7 +43,7 @@ describe('mocha grunt task', function(){
 		});
 	});
 
-	it('should load mocha options from mochaConfig', function(done) {
+	it('should load mocha options from mochaTestConfig', function(done) {
 		var Module = new ModuleMock();
 		var Mocha = mochaMock();
 		var MochaTask = proxyquire.resolve('../tasks/mocha.js', __dirname, {
@@ -94,7 +96,7 @@ describe('mocha grunt task', function(){
 				'mocha': Mocha,
 				'module': Module
 			});
-		var grunt = new GruntMock('target', 'files', ['file1', 'file2', 'file3', 'file4'], {mochaConfig: {options: 'mocha options'}});
+		var grunt = new GruntMock('target', 'files', ['file1', 'file2', 'file3', 'file4'], {mochaTestConfig: {options: 'mocha options'}});
 		var mochaTask = new MochaTask(grunt);
 		grunt.multiTask.run(function(success) {
 			expect(Mocha.files).to.deep.equal(['files', 'file1', 'file2', 'file3', 'file4']);
@@ -109,7 +111,7 @@ describe('mocha grunt task', function(){
 				'mocha': Mocha,
 				'module': Module
 			});
-		var grunt = new GruntMock('target', 'files', ['file1', 'file2', 'file3', 'file4'], {mochaConfig: {options: 'mocha options'}});
+		var grunt = new GruntMock('target', 'files', ['file1', 'file2', 'file3', 'file4'], {mochaTestConfig: {options: 'mocha options'}});
 		var mochaTask = new MochaTask(grunt);
 		grunt.multiTask.run(function(success) {
 			expect(success).to.equal(false);
@@ -126,7 +128,7 @@ describe('mocha grunt task', function(){
 				'mocha': Mocha,
 				'module': Module
 			});
-		var grunt = new GruntMock('target', 'files', ['file1', 'file2', 'file3', 'file4'], {mochaConfig: {options: 'mocha options'}});
+		var grunt = new GruntMock('target', 'files', ['file1', 'file2', 'file3', 'file4'], {mochaTestConfig: {options: 'mocha options'}});
 		var mochaTask = new MochaTask(grunt);
 		grunt.multiTask.run(function(success) {
 			expect(success).to.equal(false);
@@ -142,11 +144,47 @@ describe('mocha grunt task', function(){
 				'mocha': Mocha,
 				'module': Module
 			});
-		var grunt = new GruntMock('target', 'files', ['file1', 'file2', 'file3', 'file4'], {mochaConfig: {options: 'mocha options'}});
+		var grunt = new GruntMock('target', 'files', ['file1', 'file2', 'file3', 'file4'], {mochaTestConfig: {options: 'mocha options'}});
 		var mochaTask = new MochaTask(grunt);
 		grunt.multiTask.run(function(success) {
 			expect(success).to.equal(true);
 			expect(grunt.log.errors.length).to.equal(0);
 			done();
-		});	});
+		});
+    });
+
+    it('should add a single file added to the require option', function(done) {
+        var Module = new ModuleMock();
+        var Mocha = mochaMock();
+        var MochaTask = proxyquire.resolve('../tasks/mocha.js', __dirname, {
+            'mocha': Mocha,
+            'module': Module
+        });
+        var grunt = new GruntMock(
+            'target',
+            'files', [
+                'file1',
+                'file2',
+                'file3',
+                'file4'
+            ], {
+                mochaTestConfig: {
+                    options: {
+                        require: 'myfile'
+                    }
+                }
+            }
+        );
+        var mochaTask = new MochaTask(grunt);
+        grunt.multiTask.run(function(success) {
+            expect(Mocha.files).to.deep.equal(['myfile', 'files', 'file1', 'file2', 'file3', 'file4']);
+            done();
+        });
+    });
+
+    it('should expose global variables from the file added with the require option', function() {
+        // Note, this is not using mocks but is configured as a require in grunt.js
+        // feels like a hack but it proves the functionality pretty well
+        expect(testVar).to.equal('hello');
+    });
 });

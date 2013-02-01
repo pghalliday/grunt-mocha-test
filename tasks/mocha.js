@@ -37,6 +37,11 @@
     // create a mocha instance with our options
     var mocha = new Mocha(options);
 
+    // if require option is specified then add that file first
+    if (options && options.require) {
+      mocha.addFile(options.require);
+    }
+
     // add files to mocha
     grunt.file.expandFiles(this.file.src).forEach(function(file) {
       mocha.addFile(file);

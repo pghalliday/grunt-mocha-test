@@ -33,7 +33,8 @@ module.exports = function(grunt) {
     },
     mochaTestConfig: {
       options: {
-        reporter: 'nyan'        
+        reporter: 'nyan',
+        require: 'test/common'
       }
     }
   });
