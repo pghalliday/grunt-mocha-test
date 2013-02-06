@@ -48,7 +48,7 @@
     });
 
     // run mocha asynchronously and catch errors!! (again, in case we are running this task in watch)
-    try {      
+    try {
       mocha.run(function(failureCount) {
         done(failureCount === 0);
       });
