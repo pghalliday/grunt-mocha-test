@@ -24,7 +24,8 @@ module.exports = function(grunt) {
         undef: true,
         boss: true,
         eqnull: true,
-        node: true
+        node: true,
+        strict: false
       },
       globals: {
         describe: false,

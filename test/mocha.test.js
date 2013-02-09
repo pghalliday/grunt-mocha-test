@@ -17,7 +17,7 @@ describe('mocha grunt task', function(){
 	});
 
 	it('should run asynchronously', function(done) {
-		var MochaTask = proxyquire.resolve('../tasks/mocha.js', __dirname, {
+		var MochaTask = proxyquire('../tasks/mocha.js', {
 				'mocha': mochaMock(),
 				'module': new ModuleMock()
 			});
@@ -31,7 +31,7 @@ describe('mocha grunt task', function(){
 
 	it('should clear the require cache before sending tests to mocha so that it can be run from a watch task', function(done) {
 		var Module = new ModuleMock();
-		var MochaTask = proxyquire.resolve('../tasks/mocha.js', __dirname, {
+		var MochaTask = proxyquire('../tasks/mocha.js', {
 				'mocha': mochaMock(),
 				'module': Module
 			});
@@ -46,7 +46,7 @@ describe('mocha grunt task', function(){
 	it('should load mocha options from mochaTestConfig', function(done) {
 		var Module = new ModuleMock();
 		var Mocha = mochaMock();
-		var MochaTask = proxyquire.resolve('../tasks/mocha.js', __dirname, {
+		var MochaTask = proxyquire('../tasks/mocha.js', {
 				'mocha': Mocha,
 				'module': Module
 			});
@@ -61,7 +61,7 @@ describe('mocha grunt task', function(){
 	it('should use named config where available', function(done) {
 		var Module = new ModuleMock();
 		var Mocha = mochaMock();
-		var MochaTask = proxyquire.resolve('../tasks/mocha.js', __dirname, {
+		var MochaTask = proxyquire('../tasks/mocha.js', {
 				'mocha': Mocha,
 				'module': Module
 			});
@@ -92,7 +92,7 @@ describe('mocha grunt task', function(){
 	it('should expand and add the this.file.src file list to files in Mocha', function(done) {
 		var Module = new ModuleMock();
 		var Mocha = mochaMock();
-		var MochaTask = proxyquire.resolve('../tasks/mocha.js', __dirname, {
+		var MochaTask = proxyquire('../tasks/mocha.js', {
 				'mocha': Mocha,
 				'module': Module
 			});
@@ -107,7 +107,7 @@ describe('mocha grunt task', function(){
 	it('should catch and log exceptions thrown by Mocha to the console before failing the task so that it can be run from a watch task', function(done) {
 		var Module = new ModuleMock();
 		var Mocha = mochaMock(new Error('This is a test'));
-		var MochaTask = proxyquire.resolve('../tasks/mocha.js', __dirname, {
+		var MochaTask = proxyquire('../tasks/mocha.js', {
 				'mocha': Mocha,
 				'module': Module
 			});
@@ -124,7 +124,7 @@ describe('mocha grunt task', function(){
 	it('should fail if any tests fail', function(done) {
 		var Module = new ModuleMock();
 		var Mocha = mochaMock(1);
-		var MochaTask = proxyquire.resolve('../tasks/mocha.js', __dirname, {
+		var MochaTask = proxyquire('../tasks/mocha.js', {
 				'mocha': Mocha,
 				'module': Module
 			});
@@ -140,7 +140,7 @@ describe('mocha grunt task', function(){
 	it('should succeed if no tests fail', function(done) {
 		var Module = new ModuleMock();
 		var Mocha = mochaMock();
-		var MochaTask = proxyquire.resolve('../tasks/mocha.js', __dirname, {
+		var MochaTask = proxyquire('../tasks/mocha.js', {
 				'mocha': Mocha,
 				'module': Module
 			});
@@ -156,7 +156,7 @@ describe('mocha grunt task', function(){
     it('should add a single file added to the require option', function(done) {
         var Module = new ModuleMock();
         var Mocha = mochaMock();
-        var MochaTask = proxyquire.resolve('../tasks/mocha.js', __dirname, {
+        var MochaTask = proxyquire('../tasks/mocha.js', {
             'mocha': Mocha,
             'module': Module
         });
