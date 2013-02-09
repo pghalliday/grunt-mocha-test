@@ -1,9 +1,8 @@
-module.exports = function(target, src, filesExpanded, config) {
+module.exports = function(target, src, filesExpanded, config, version) {
+
 	this.multiTask = {
+		file: {},
 		target: target,
-		file: {
-			src: src
-		},
 		asynchronous: false,
 		async: function() {
 			this.asynchronous = true;
@@ -20,6 +19,7 @@ module.exports = function(target, src, filesExpanded, config) {
 			}
 		}
 	};
+
 	this.registerMultiTask = function(name, description, callback) {
 		this.multiTask.name = name;
 		this.multiTask.description = description;
@@ -45,4 +45,10 @@ module.exports = function(target, src, filesExpanded, config) {
 			this.errors.push(msg);
 		}
 	};
+
+	if (version === '0.4.x') {
+		this.multiTask.filesSrc = this.file.expandFiles(src);
+	} else {
+		this.multiTask.file.src = src;
+	}
 };

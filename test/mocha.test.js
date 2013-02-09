@@ -89,7 +89,7 @@ describe('mocha grunt task', function(){
 		});
 	});
 
-	it('should expand and add the this.file.src file list to files in Mocha', function(done) {
+	it('should expand and add the file list to files in Mocha', function(done) {
 		var Module = new ModuleMock();
 		var Mocha = mochaMock();
 		var MochaTask = proxyquire('../tasks/mocha.js', {
@@ -186,5 +186,22 @@ describe('mocha grunt task', function(){
         // Note, this is not using mocks but is configured as a require in grunt.js
         // feels like a hack but it proves the functionality pretty well
         expect(testVar).to.equal('hello');
+    });
+
+    describe('with grunt 0.4.x', function() {
+		it('should expand and add the file list to files in Mocha', function(done) {
+			var Module = new ModuleMock();
+			var Mocha = mochaMock();
+			var MochaTask = proxyquire('../tasks/mocha.js', {
+					'mocha': Mocha,
+					'module': Module
+				});
+			var grunt = new GruntMock('target', 'files', ['file1', 'file2', 'file3', 'file4'], {mochaTestConfig: {options: 'mocha options'}}, "0.4.x");
+			var mochaTask = new MochaTask(grunt);
+			grunt.multiTask.run(function(success) {
+				expect(Mocha.files).to.deep.equal(['files', 'file1', 'file2', 'file3', 'file4']);
+				done();
+			});
+		});
     });
 });
