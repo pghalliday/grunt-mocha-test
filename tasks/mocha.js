@@ -43,12 +43,20 @@
     }
 
     // add files to mocha
-    grunt.file.expandFiles(this.file.src).forEach(function(file) {
+   if(this.file && this.file.src) {
+     // grunt 0.3.x
+     grunt.file.expandFiles(this.file.src).forEach(function(file) {
       mocha.addFile(file);
-    });
+     });
+   } else {
+     // grunt 0.4.x
+     this.filesSrc.forEach(function(path) {
+       mocha.addFile(path);
+     });
+   }
 
     // run mocha asynchronously and catch errors!! (again, in case we are running this task in watch)
-    try {      
+    try {
       mocha.run(function(failureCount) {
         done(failureCount === 0);
       });
