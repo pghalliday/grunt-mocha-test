@@ -43,7 +43,7 @@
     }
 
     // add files to mocha
-    grunt.file.expandFiles(this.file.src).forEach(function(file) {
+    grunt.file.expand(this.filesSrc).forEach(function(file) {
       mocha.addFile(file);
     });
 
