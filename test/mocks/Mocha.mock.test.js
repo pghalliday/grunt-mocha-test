@@ -41,4 +41,76 @@ describe('MochaMock', function() {
 			done();
 		}
 	});
+	describe('invert support', function() {
+		it('should record invert parameter if called', function(done) {
+			var MochaMock = mochaMock();
+			var mocha = new MochaMock();
+			mocha.invert('invert option').run(function(failureCount) {
+				expect(MochaMock.invert).to.equal('invert option');
+				done();
+			});
+		});
+		it('invert property should be undefined if not called', function(done) {
+			var MochaMock = mochaMock();
+			var mocha = new MochaMock();
+			mocha.run(function(failureCount) {
+				expect(MochaMock.invert).to.be.an('undefined');
+				done();
+			});
+		});
+	});
+	describe('ignoreLeaks support', function() {
+		it('should record ignoreLeaks parameter if called', function(done) {
+			var MochaMock = mochaMock();
+			var mocha = new MochaMock();
+			mocha.ignoreLeaks('ignoreLeaks option').run(function(failureCount) {
+				expect(MochaMock.ignoreLeaks).to.equal('ignoreLeaks option');
+				done();
+			});
+		});
+		it('ignoreLeaks property should be undefined if not called', function(done) {
+			var MochaMock = mochaMock();
+			var mocha = new MochaMock();
+			mocha.run(function(failureCount) {
+				expect(MochaMock.ignoreLeaks).to.be.an('undefined');
+				done();
+			});
+		});
+	});
+	describe('growl support', function() {
+		it('should record growl parameter if called', function(done) {
+			var MochaMock = mochaMock();
+			var mocha = new MochaMock();
+			mocha.growl('growl option').run(function(failureCount) {
+				expect(MochaMock.growl).to.equal('growl option');
+				done();
+			});
+		});
+		it('growl property should be undefined if not called', function(done) {
+			var MochaMock = mochaMock();
+			var mocha = new MochaMock();
+			mocha.run(function(failureCount) {
+				expect(MochaMock.growl).to.be.an('undefined');
+				done();
+			});
+		});
+	});
+	describe('globals support', function() {
+		it('should record globals parameter if called', function(done) {
+			var MochaMock = mochaMock();
+			var mocha = new MochaMock();
+			mocha.globals('globals option').run(function(failureCount) {
+				expect(MochaMock.globals).to.equal('globals option');
+				done();
+			});
+		});
+		it('globals property should be undefined if not called', function(done) {
+			var MochaMock = mochaMock();
+			var mocha = new MochaMock();
+			mocha.run(function(failureCount) {
+				expect(MochaMock.globals).to.be.an('undefined');
+				done();
+			});
+		});
+	});
 });

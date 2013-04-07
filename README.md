@@ -77,6 +77,18 @@ module.exports = function(grunt) {
 };
 ```
 
+The following mocha options are supported
+
+- grep
+- ui
+- reporter
+- timeout
+- invert
+- ignoreLeaks
+- growl
+- globals
+- require
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].
 

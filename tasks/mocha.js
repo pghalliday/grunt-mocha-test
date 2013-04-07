@@ -43,17 +43,37 @@
     }
 
     // add files to mocha
-   if(this.file && this.file.src) {
-     // grunt 0.3.x
-     grunt.file.expandFiles(this.file.src).forEach(function(file) {
-      mocha.addFile(file);
-     });
-   } else {
-     // grunt 0.4.x
-     this.filesSrc.forEach(function(path) {
-       mocha.addFile(path);
-     });
-   }
+    if(this.file && this.file.src) {
+      // grunt 0.3.x
+      grunt.file.expandFiles(this.file.src).forEach(function(file) {
+        mocha.addFile(file);
+      });
+    } else {
+      // grunt 0.4.x
+      this.filesSrc.forEach(function(path) {
+        mocha.addFile(path);
+      });
+    }
+
+    // if invert option is specified then use it
+    if (options && typeof(options.invert) !== 'undefined') {
+      mocha = mocha.invert(options.invert);
+    }    
+
+    // if ignoreLeaks option is specified then use it
+    if (options && typeof(options.ignoreLeaks) !== 'undefined') {
+      mocha = mocha.ignoreLeaks(options.ignoreLeaks);
+    }    
+
+    // if growl option is specified then use it
+    if (options && typeof(options.growl) !== 'undefined') {
+      mocha = mocha.growl(options.growl);
+    }    
+
+    // if globals option is specified then use it
+    if (options && typeof(options.globals) !== 'undefined') {
+      mocha = mocha.globals(options.globals);
+    }    
 
     // run mocha asynchronously and catch errors!! (again, in case we are running this task in watch)
     try {
