@@ -27,17 +27,19 @@ module.exports = function(grunt) {
           it: false
         }
       },
-      files: ['grunt.js', 'tasks/**/*.js', 'test/**/*.js']
+      all: {
+        src: ['grunt.js', 'tasks/**/*.js', 'test/**/*.js']
+      }
     },
     mochaTest: {
-      files: ['test/**/*.test.js']
-    },
-    mochaTestConfig: {
       options: {
         reporter: 'nyan',
         require: 'test/common'
+      },
+      all: {
+        src: ['test/**/*.test.js']
       }
-    }
+    },
   });
 
   // Default task.
