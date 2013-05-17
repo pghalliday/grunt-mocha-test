@@ -9,6 +9,7 @@
  module.exports = function(grunt) {
   var Mocha = require('mocha');
   var Module = require('module');
+  var domain = require('domain');
 
   grunt.registerMultiTask('mochaTest', 'Run node unit tests with Mocha', function() {
     // tell grunt this is an asynchronous task
@@ -75,15 +76,39 @@
       mocha = mocha.globals(options.globals);
     }    
 
-    // run mocha asynchronously and catch errors!! (again, in case we are running this task in watch)
-    try {
-      mocha.run(function(failureCount) {
-        done(failureCount === 0);
-      });
-    } catch (e) {
-      grunt.log.error('Mocha exploded!');
-      grunt.log.error(e.stack);
-      done(false);
+    if (mocha.files.length) {
+      mocha.loadFiles();
     }
+    var suite = mocha.suite;
+    var internaloptions = mocha.options;
+    var runner = new Mocha.Runner(suite);
+    var reporter = new mocha._reporter(runner);
+    runner.ignoreLeaks = false !== internaloptions.ignoreLeaks;
+    runner.asyncOnly = internaloptions.asyncOnly;
+    if (internaloptions.grep) {
+      runner.grep(internaloptions.grep, internaloptions.invert);
+    }
+    if (internaloptions.globals) {
+      runner.globals(internaloptions.globals);
+    }
+    if (internaloptions.growl) {
+      this._growl(runner, reporter);
+    }
+
+    // run mocha asynchronously and catch errors!! (again, in case we are running
+    // this task in watch)
+    var d = new domain.create();
+    d.on('error', runner.uncaught.bind(runner));
+    d.run(function() {
+      try {
+        runner.run(function(failureCount) {
+          done(failureCount === 0);
+        });
+      } catch (e) {
+        grunt.log.error('Mocha exploded!');
+        grunt.log.error(e.stack);
+        done(false);
+      }
+    });
   });
 };

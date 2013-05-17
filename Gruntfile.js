@@ -1,17 +1,13 @@
 /*global module:false*/
 module.exports = function(grunt) {
 
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+
   // Add our custom tasks.
   grunt.loadTasks('tasks');
 
   // Project configuration.
   grunt.initConfig({
-    lint: {
-      files: ['grunt.js', 'tasks/**/*.js', 'test/**/*.js']
-    },
-    mochaTest: {
-      files: ['test/**/*.test.js']
-    },
     jshint: {
       options: {
         curly: true,
@@ -25,12 +21,16 @@ module.exports = function(grunt) {
         boss: true,
         eqnull: true,
         node: true,
-        strict: false
+        strict: false,
+        globals: {
+          describe: false,
+          it: false
+        }
       },
-      globals: {
-        describe: false,
-        it: false
-      }
+      files: ['grunt.js', 'tasks/**/*.js', 'test/**/*.js']
+    },
+    mochaTest: {
+      files: ['test/**/*.test.js']
     },
     mochaTestConfig: {
       options: {
@@ -41,5 +41,5 @@ module.exports = function(grunt) {
   });
 
   // Default task.
-  grunt.registerTask('default', 'lint mochaTest');
+  grunt.registerTask('default', ['jshint', 'mochaTest']);
 };

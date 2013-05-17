@@ -328,4 +328,28 @@ describe('mocha grunt task', function(){
       });
     });
   });
+
+  describe('async tests', function () {
+      it('first passes', function (done) {
+          process.nextTick(function () {
+              expect(true).to.equal(true);
+              done();
+          });
+      });
+      it('second fails', function (done) {
+          process.nextTick(function () {
+            var hello = function() {
+              expect(true).to.equal(false);
+              done();
+            };
+            hello();
+          });
+      });
+      it('third passes', function (done) {
+          process.nextTick(function () {
+              expect(true).to.equal(true);
+              done();
+          });
+      });
+  });
 });
