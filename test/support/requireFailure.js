@@ -1,0 +1,1 @@
+var doesNotExist = require('doesNotExist');

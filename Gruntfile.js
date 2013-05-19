@@ -37,7 +37,7 @@ module.exports = function(grunt) {
         require: 'test/common'
       },
       all: {
-        src: ['test/**/*.test.js']
+        src: ['test/tasks/**/*.js']
       }
     },
   });
