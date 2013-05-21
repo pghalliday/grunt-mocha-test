@@ -11,8 +11,8 @@ Then add this line to your project's `Gruntfile.js` gruntfile:
 grunt.loadNpmTasks('grunt-mocha-test');
 ```
 
-[grunt]: https://github.com/cowboy/grunt
-[getting_started]: https://github.com/cowboy/grunt/blob/master/docs/getting_started.md
+[grunt]: http://gruntjs.com
+[getting_started]: http://gruntjs.com/getting-started
 
 ## Documentation
 
