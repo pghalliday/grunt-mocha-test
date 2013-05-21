@@ -61,8 +61,7 @@ The following mocha options are supported
 
 ## Roadmap
 
-- Catch asynchronous require exceptions so that grunt does not exit early
-- Test the growl option
+- Mock growl binaries so that the growl test actually checks if growl is called
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].

@@ -150,9 +150,19 @@ describe('grunt-mocha-test', function() {
     });
   });
 
-  it.skip('should support the growl option', function(done) {
-    execScenario('growlOption', function(error, stdout, stderr) {
-      // How do I test this??
+  it('should support the growl option', function(done) {
+    execScenario('growlOption', function(error, stdout, stderr) { 
+      // TODO: Let's just test that everything completed successfully
+      // as there's no way of knowing if growl was actually called for now.
+      // A possible option would be to mock the growl binaries in the 
+      // growlOption scenario directory and have them do something that
+      // the test can detect (HTTP server/request?). This would have to
+      // be done for each platform though.
+      expect(stdout).to.match(/test1/);
+      expect(stdout).to.match(/test2/);
+      expect(stdout).to.match(/2 tests complete/);
+      expect(stdout).to.match(/Done, without errors./);
+      expect(stderr).to.equal('');
       done();
     });
   });

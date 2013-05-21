@@ -38,7 +38,7 @@ function MochaWrapper(params) {
           mochaRunner.globals(mochaOptions.globals);
         }
         if (mochaOptions.growl) {
-          this._growl(mochaRunner, mochaReporter);
+          mocha._growl(mochaRunner, mochaReporter);
         }
 
         var runDomain = domain.create();
