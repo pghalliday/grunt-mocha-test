@@ -1,4 +1,3 @@
-/*global module:false*/
 module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -24,7 +23,9 @@ module.exports = function(grunt) {
         strict: false,
         globals: {
           describe: false,
-          it: false
+          it: false,
+          suite: false,
+          test: false
         }
       },
       all: {
@@ -33,8 +34,7 @@ module.exports = function(grunt) {
     },
     mochaTest: {
       options: {
-        reporter: 'nyan',
-        require: 'test/common'
+        reporter: 'spec',
       },
       all: {
         src: ['test/tasks/**/*.js']
