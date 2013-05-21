@@ -1,0 +1,3 @@
+[submodule "cookbooks/node"]
+	path = cookbooks/node
+	url = https://github.com/digitalbutter/cookbook-node.git

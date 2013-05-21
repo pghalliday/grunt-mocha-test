@@ -3,9 +3,9 @@
 A grunt task for running server side mocha tests
 
 ## Getting Started
-Install this grunt plugin next to your project's [grunt.js gruntfile][getting_started] with: `npm install grunt-mocha-test`
+Install this grunt plugin next to your project's [Gruntfile.js gruntfile][getting_started] with: `npm install grunt-mocha-test`
 
-Then add this line to your project's `grunt.js` gruntfile:
+Then add this line to your project's `Gruntfile.js` gruntfile:
 
 ```javascript
 grunt.loadNpmTasks('grunt-mocha-test');
@@ -16,8 +16,6 @@ grunt.loadNpmTasks('grunt-mocha-test');
 
 ## Documentation
 
-A single task example
-
 ```javascript
 /*global module:false*/
 module.exports = function(grunt) {
@@ -28,52 +26,25 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     mochaTest: {
-      files: ['test/**/*.test.js']
-    },
-    mochaTestConfig: {
-      options: {
-        reporter: 'nyan'        
-      }
-    }
-  });
-
-  // Default task.
-  grunt.registerTask('default', 'mochaTest');
-};
-```
-
-A multi task example
-
-```javascript
-/*global module:false*/
-module.exports = function(grunt) {
-
-  // Add our custom tasks.
-  grunt.loadNpmTasks('grunt-mocha-test');
-
-  // Project configuration.
-  grunt.initConfig({
-    mochaTest: {
-      normal: ['test/**/*.test.js'],
-      withTimeout: ['test-timeout/**/*.test.js']
-    },
-    mochaTestConfig: {
       normal: {
-	    options: {
-	      reporter: 'nyan'        
-	    }
+        options: {
+          reporter: 'nyan'        
+        }
+        src: ['test/**/*.test.js']
       },
       withTimeout: {
-	    options: {
-	      reporter: 'nyan',
-	      timeout: 1000     
-	    }
+        options: {
+          reporter: 'nyan',
+          timeout: 1000     
+        }
+        src: ['test-timeout/**/*.test.js']
       }
     }
   });
 
   // Default task.
-  grunt.registerTask('default', 'mochaTest');
+  grunt.registerTask('default', 'mochaTest:normal');
+  grunt.registerTask('testWithTimeout', 'mochaTest:withTimeout');
 };
 ```
 
@@ -91,6 +62,18 @@ The following mocha options are supported
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].
+
+## Using Vagrant
+To use the Vagrantfile you will also need to install the chef omnibus vagrant plugin
+
+`$ vagrant plugin install vagrant-omnibus`
+
+The node cookbook has been added as a git submodule so you will also have to initialise and update the submodules after cloning the repository
+
+```
+$ git submodule init
+$ git submodule update
+```
 
 ## Release History
 _(Nothing yet)_

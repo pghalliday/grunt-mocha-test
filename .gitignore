@@ -16,3 +16,6 @@ npm-debug.log
 
 # Webstorm workspace stuff
 .idea
+
+# vagrant stuff
+.vagrant
