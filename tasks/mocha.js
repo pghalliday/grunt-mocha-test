@@ -1,16 +1,7 @@
-/*
- * grunt-mocha-test
- * https://github.com/pghalliday/grunt-mocha-test
- *
- * Copyright (c) 2012 Peter Halliday
- * Licensed under the MIT license.
- */
-
- module.exports = function(grunt) {
+module.exports = function(grunt) {
   var MochaWrapper = require('./lib/MochaWrapper');
 
   grunt.registerMultiTask('mochaTest', 'Run node unit tests with Mocha', function() {
-    // tell grunt this is an asynchronous task
     var done = this.async();
     var mochaWrapper = new MochaWrapper({
       files: this.filesSrc,
