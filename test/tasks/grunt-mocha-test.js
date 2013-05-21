@@ -44,15 +44,17 @@ describe('grunt-mocha-test', function() {
   it('should cleanly catch and log require exceptions thrown synchronously by Mocha so that grunt does not exit early', function(done) {
     execScenario('requireFailure', function(error, stdout, stderr) {
       expect(stdout).to.match(/Cannot find module 'doesNotExist/);
+      expect(stdout).to.match(/test.js/);
       expect(stdout).to.match(/Aborted due to warnings./);
       expect(stderr).to.equal('');
       done();
     });
   });
 
-  it.skip('should cleanly catch and log require exceptions thrown asynchronously by Mocha so that grunt does not exit early', function(done) {
+  it('should cleanly catch and log require exceptions thrown asynchronously by Mocha so that grunt does not exit early', function(done) {
     execScenario('asyncRequireFailure', function(error, stdout, stderr) {
       expect(stdout).to.match(/Cannot find module 'doesNotExist/);
+      expect(stdout).to.match(/test.js/);
       expect(stdout).to.match(/Aborted due to warnings./);
       expect(stderr).to.equal('');
       done();
