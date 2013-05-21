@@ -79,9 +79,6 @@ $ git submodule init
 $ git submodule update
 ```
 
-## Release History
-_(Nothing yet)_
-
 ## License
 Copyright (c) 2012 Peter Halliday  
 Licensed under the MIT license.
