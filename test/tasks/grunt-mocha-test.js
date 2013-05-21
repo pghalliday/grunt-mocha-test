@@ -32,7 +32,16 @@ describe('grunt-mocha-test', function() {
     });
   });
 
-  it('should cleanly catch and log require exceptions thrown synchronously by Mocha', function(done) {
+  it('should cleanly catch asynchronous test failures so that grunt does not exit early', function(done) {
+    execScenario('asyncTestFailure', function(error, stdout, stderr) {
+      expect(stdout).to.match(/Asynchronous test/);
+      expect(stdout).to.match(/Aborted due to warnings./);
+      expect(stderr).to.match(/1 of 1 test failed/);
+      done();
+    });
+  });
+
+  it('should cleanly catch and log require exceptions thrown synchronously by Mocha so that grunt does not exit early', function(done) {
     execScenario('requireFailure', function(error, stdout, stderr) {
       expect(stdout).to.match(/Cannot find module 'doesNotExist/);
       expect(stdout).to.match(/Aborted due to warnings./);
@@ -41,20 +50,11 @@ describe('grunt-mocha-test', function() {
     });
   });
 
-  it.skip('should cleanly catch and log require exceptions thrown asynchronously by Mocha', function(done) {
+  it.skip('should cleanly catch and log require exceptions thrown asynchronously by Mocha so that grunt does not exit early', function(done) {
     execScenario('asyncRequireFailure', function(error, stdout, stderr) {
       expect(stdout).to.match(/Cannot find module 'doesNotExist/);
       expect(stdout).to.match(/Aborted due to warnings./);
       expect(stderr).to.equal('');
-      done();
-    });
-  });
-
-  it('should not allow uncaught errors to escape so that asynchronous test failures do not exit grunt', function(done) {
-    execScenario('asyncTestFailure', function(error, stdout, stderr) {
-      expect(stdout).to.match(/Asynchronous test/);
-      expect(stdout).to.match(/Aborted due to warnings./);
-      expect(stderr).to.match(/1 of 1 test failed/);
       done();
     });
   });

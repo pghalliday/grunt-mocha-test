@@ -59,6 +59,11 @@ The following mocha options are supported
 - globals
 - require
 
+## Roadmap
+
+- Catch asynchronous require exceptions so that grunt does not exit early
+- Test the growl option
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].
 
