@@ -16,6 +16,8 @@ grunt.loadNpmTasks('grunt-mocha-test');
 
 ## Documentation
 
+Here is an example gruntfile that regsisters 2 test tasks, 1 to run the tests and 1 to generate a coverage report using `blanket.js` to instrument the javascript on the fly.
+
 ```javascript
 /*global module:false*/
 module.exports = function(grunt) {
@@ -26,24 +28,26 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     mochaTest: {
-      options: {
-        reporter: 'nyan'
-      },
-      normal: {
-        src: ['test/**/*.test.js']
-      },
-      withTimeout: {
+      test: {
         options: {
-          timeout: 1000     
+          reporter: 'spec'
+        },
+        src: ['test/**/*.js']
+      },
+      coverage: {
+        options: {
+          reporter: 'html-cov',
+          require: 'blanket', // require blanket to instrument other required files on the fly
+          quiet: true         // use the quiet flag to suppress the mocha console output
         }
-        src: ['test-timeout/**/*.test.js']
+        src: ['test/**/*.js'],
+        dest: 'coverage.html' // specify a destination file to capture the mocha output (the quiet option does not suppress this)
       }
     }
   });
 
   // Default task.
-  grunt.registerTask('default', 'mochaTest:normal');
-  grunt.registerTask('testWithTimeout', 'mochaTest:withTimeout');
+  grunt.registerTask('default', 'mochaTest');
 };
 ```
 

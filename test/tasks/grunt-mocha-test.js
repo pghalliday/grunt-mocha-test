@@ -2,6 +2,7 @@
 
 var expect = require('chai').expect;
 var exec = require('child_process').exec;
+var fs = require('fs');
 
 var mergeCoverageData = function(data) {
   // we have to reconstruct the the _$jscoverage data
@@ -198,5 +199,53 @@ describe('grunt-mocha-test', function() {
     });
   });
 
-  it('should support a destination file to write output');
+  it('should support a destination file to write output', function(done) {
+    var destinationFile = __dirname + '/../scenarios/destinationFile/output';
+
+    // first remove the destination file
+    if (fs.existsSync(destinationFile)) {
+      fs.unlinkSync(destinationFile);
+    }
+
+    execScenario('destinationFile', function(error, stdout, stderr) {
+      expect(stdout).to.match(/test1/);
+      expect(stdout).to.match(/test2/);
+      expect(stdout).to.match(/2 tests complete/);
+      expect(stdout).to.match(/Done, without errors./);
+      expect(stderr).to.equal('');
+
+      // now read the destination file
+      var output = fs.readFileSync(destinationFile, 'utf8');
+      expect(output).to.match(/test1/);
+      expect(output).to.match(/test2/);
+      expect(output).to.match(/2 tests complete/);
+
+      done();
+    });
+  });
+
+  it('should support the quiet option', function(done) {
+    var destinationFile = __dirname + '/../scenarios/quietOption/output';
+
+    // first remove the destination file
+    if (fs.existsSync(destinationFile)) {
+      fs.unlinkSync(destinationFile);
+    }
+
+    execScenario('quietOption', function(error, stdout, stderr) {
+      expect(stdout).to.not.match(/test1/);
+      expect(stdout).to.not.match(/test2/);
+      expect(stdout).to.not.match(/2 tests complete/);
+      expect(stdout).to.match(/Done, without errors./);
+      expect(stderr).to.equal('');
+
+      // now read the destination file
+      var output = fs.readFileSync(destinationFile, 'utf8');
+      expect(output).to.match(/test1/);
+      expect(output).to.match(/test2/);
+      expect(output).to.match(/2 tests complete/);
+
+      done();
+    });
+  });
 });

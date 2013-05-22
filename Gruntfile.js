@@ -53,7 +53,7 @@ module.exports = function(grunt) {
       coverage: {
         options: {
           reporter: 'html-cov',
-          timeout: 5000
+          quiet: true
         },
         src: ['.coverage/test/tasks/**/*.js'],
         dest: 'coverage.html'

@@ -22,3 +22,7 @@ npm-debug.log
 
 # coverage stuff
 .coverage
+
+# test stuff
+test/scenarios/destinationFile/output
+test/scenarios/quietOption/output
