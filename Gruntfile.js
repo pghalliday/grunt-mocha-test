@@ -1,6 +1,7 @@
 module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-blanket');
 
   // Add our custom tasks.
   grunt.loadTasks('tasks');
@@ -32,16 +33,37 @@ module.exports = function(grunt) {
         src: ['grunt.js', 'tasks/**/*.js', 'test/**/*.js']
       }
     },
-    mochaTest: {
-      options: {
-        reporter: 'spec',
+    blanket: {
+      tasks: {
+        src: ['tasks/'],
+        dest: 'coverage/tasks/'
       },
+      test: {
+        src: ['test/'],
+        dest: 'coverage/test/'
+      }
+    },
+    mochaTest: {
       all: {
+        options: {
+          reporter: 'spec',
+        },
         src: ['test/tasks/**/*.js']
+      },
+      coverage: {
+        options: {
+          reporter: 'html-cov',
+          timeout: 5000
+        },
+        src: ['coverage/test/tasks/**/*.js'],
+        dest: 'coverage.html'
       }
     },
   });
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'mochaTest']);
+  grunt.registerTask('lint', ['jshint']);
+  grunt.registerTask('test', ['mochaTest:all']);
+  grunt.registerTask('coverage', ['blanket', 'mochaTest:coverage']);
+  grunt.registerTask('default', ['lint', 'test', 'coverage']);
 };

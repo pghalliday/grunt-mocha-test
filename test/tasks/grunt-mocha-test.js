@@ -1,14 +1,45 @@
+/*jshint loopfunc: true */
+
 var expect = require('chai').expect;
 var exec = require('child_process').exec;
 
-var execScenario = function(scenario, callback) {
-  var command;
-  if (process.platform === 'win32') {
-    command = 'grunt.cmd';
-  } else {
-    command = 'grunt';
+var mergeCoverageData = function(data) {
+  // we have to reconstruct the the _$jscoverage data
+  // format as it cannot be stringified to JSON with
+  // the additional source property added to arrays
+  var jscoverage = global._$jscoverage;
+  var sourceArrays = data.sourceArrays;
+  var callCounts = data.callCounts;
+  if (jscoverage) {
+    for (var filename in sourceArrays) {
+      var dest = jscoverage[filename];
+      var src = callCounts[filename];
+      src.source = sourceArrays[filename];
+      if (typeof dest === 'undefined') {
+        jscoverage[filename] = src;
+      } else {
+        src.forEach(function(count, index) {
+          if (count !== null) {
+            dest[index] += count;
+          }
+        });
+      }
+    }
   }
-  var child = exec('../../../node_modules/.bin/' + command, {cwd: 'test/scenarios/' + scenario}, callback);
+};
+
+var execScenario = function(scenario, callback) {
+  var child = exec('node ../grunt.js', {cwd: __dirname + '/../scenarios/' + scenario}, function(error, stdout, stderr) {
+    // collect coverage data from stdout if it exists
+    // this is because the coverage tool does not
+    // really work with child processes so we are
+    // giving it a helping hand
+    var jscoverage = stdout.match(/##jscoverage##(.+)/);
+    if (jscoverage) {
+      mergeCoverageData(JSON.parse(jscoverage[1]));
+    }
+    callback(error, stdout, stderr);
+  });
 };
 
 describe('grunt-mocha-test', function() {
@@ -166,4 +197,6 @@ describe('grunt-mocha-test', function() {
       done();
     });
   });
+
+  it('should support a destination file to write output');
 });
