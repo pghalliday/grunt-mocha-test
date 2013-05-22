@@ -64,7 +64,7 @@ The following mocha options are supported
 - Mock growl binaries so that the growl test actually checks if growl is called
 
 ## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [grunt][grunt].
+In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using `npm test`.
 
 ## Using Vagrant
 To use the Vagrantfile you will also need to install the chef omnibus vagrant plugin
