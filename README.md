@@ -39,7 +39,7 @@ module.exports = function(grunt) {
           reporter: 'html-cov',
           require: 'blanket', // require blanket to instrument other required files on the fly
           quiet: true         // use the quiet flag to suppress the mocha console output
-        }
+        },
         src: ['test/**/*.js'],
         dest: 'coverage.html' // specify a destination file to capture the mocha output (the quiet option does not suppress this)
       }
@@ -66,6 +66,7 @@ The following mocha options are supported
 ## Roadmap
 
 - Mock growl binaries so that the growl test actually checks if growl is called
+- Figure out why the example doesn't really work (is there a problem with the require option?)
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using `npm test`.
