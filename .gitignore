@@ -19,3 +19,6 @@ npm-debug.log
 
 # vagrant stuff
 .vagrant
+
+# coverage stuff
+.coverage

@@ -36,11 +36,11 @@ module.exports = function(grunt) {
     blanket: {
       tasks: {
         src: ['tasks/'],
-        dest: 'coverage/tasks/'
+        dest: '.coverage/tasks/'
       },
       test: {
         src: ['test/'],
-        dest: 'coverage/test/'
+        dest: '.coverage/test/'
       }
     },
     mochaTest: {
@@ -55,7 +55,7 @@ module.exports = function(grunt) {
           reporter: 'html-cov',
           timeout: 5000
         },
-        src: ['coverage/test/tasks/**/*.js'],
+        src: ['.coverage/test/tasks/**/*.js'],
         dest: 'coverage.html'
       }
     },
