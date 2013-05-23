@@ -168,10 +168,6 @@ Don't forget to update `package.json` with options for `travis-cov`, for example
   ...
 ```
 
-## Roadmap
-
-- Mock growl binaries so that the growl test actually checks if growl is called
-
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using: 
 
