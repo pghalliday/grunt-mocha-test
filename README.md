@@ -5,7 +5,6 @@
 A grunt task for running server side mocha tests
 
 ## Getting Started
-Install this grunt plugin next to your project's [Gruntfile.js gruntfile][getting_started] with: `npm install grunt-mocha-test`
 
 Then add this line to your project's `Gruntfile.js` gruntfile:
 
@@ -13,10 +12,13 @@ Then add this line to your project's `Gruntfile.js` gruntfile:
 grunt.loadNpmTasks('grunt-mocha-test');
 ```
 
-[grunt]: http://gruntjs.com
-[getting_started]: http://gruntjs.com/getting-started
+## Usage
 
-## Documentation
+Install next to your project's Gruntfile.js with: 
+
+```
+$ npm install grunt-mocha-test
+```
 
 The following mocha options are supported
 
@@ -35,11 +37,11 @@ Here is a simple example gruntfile if you just want to run tests
 ```javascript
 module.exports = function(grunt) {
 
-  // Add our custom tasks.
+  // Add the grunt-mocha-test tasks.
   grunt.loadNpmTasks('grunt-mocha-test');
 
-  // Project configuration.
   grunt.initConfig({
+    // Configure a mochaTest task
     mochaTest: {
       test: {
         options: {
@@ -49,7 +51,6 @@ module.exports = function(grunt) {
       },
   });
 
-  // Default task.
   grunt.registerTask('default', 'mochaTest');
 };
 ```
@@ -63,10 +64,8 @@ $ npm install blanket
 ```javascript
 module.exports = function(grunt) {
 
-  // Add our custom tasks.
   grunt.loadNpmTasks('grunt-mocha-test');
 
-  // Project configuration.
   grunt.initConfig({
     mochaTest: {
       test: {
@@ -99,7 +98,6 @@ module.exports = function(grunt) {
     }
   });
 
-  // Default task.
   grunt.registerTask('default', 'mochaTest');
 };
 ```
@@ -108,6 +106,7 @@ As noted above it is necessary to wrap the blanket require when calling mocha pr
 
 ```javascript
 require('blanket')({
+  // Only files that match the pattern will be instrumented
   pattern: '/src/'
 });
 ```
@@ -121,10 +120,8 @@ $ npm install travis-cov
 ```javascript
 module.exports = function(grunt) {
 
-  // Add our custom tasks.
   grunt.loadNpmTasks('grunt-mocha-test');
 
-  // Project configuration.
   grunt.initConfig({
     mochaTest: {
       test: {
@@ -153,7 +150,6 @@ module.exports = function(grunt) {
     }
   });
 
-  // Default task.
   grunt.registerTask('default', 'mochaTest');
 };
 ```
@@ -179,7 +175,11 @@ Don't forget to update `package.json` with options for `travis-cov`, for example
 - Mock growl binaries so that the growl test actually checks if growl is called
 
 ## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using `npm test`.
+In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using: 
+
+```
+$ npm test
+```
 
 ## Using Vagrant
 To use the Vagrantfile you will also need to install the chef omnibus vagrant plugin
