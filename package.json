@@ -33,7 +33,7 @@
     }
   },
   "dependencies": {
-    "mocha": "~1.9.0"
+    "mocha": "~1.10.0"
   },
   "devDependencies": {
     "grunt-cli": "~0.1.8",
