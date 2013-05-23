@@ -11,20 +11,15 @@ function MochaWrapper(params) {
   // option in the mocha source (bin/_mocha)
   var cwd = process.cwd();
   var join = path.join;
+  var resolve = path.resolve;
+  var exists = fs.existsSync;
   module.paths.push(cwd, join(cwd, 'node_modules'));
   if (params.options && params.options.require) {
     var mod = params.options.require;
-    // This was in the original mocha code but as far as I can tell
-    // it does nothing as fs.exists is asynchronous and always returns
-    // undefined - I am commmenting it out in order to maintain 100%
-    // coverage, if issues are raised against the require option then
-    // maybe this will be a solution??...
-    //
-    // var abs = fs.exists(mod) || fs.exists(mod + '.js');
-    // console.log(abs);
-    // if (abs) {
-    //   mod = join(cwd, mod);
-    // }
+    var abs = exists(mod) || exists(mod + '.js');
+    if (abs) {
+      mod = resolve(mod);
+    }
     require(mod);
   }
 
