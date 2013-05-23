@@ -184,5 +184,5 @@ $ vagrant plugin install vagrant-omnibus
 
 
 ## License
-Copyright (c) 2012 Peter Halliday  
+Copyright (c) 2013 Peter Halliday  
 Licensed under the MIT license.
