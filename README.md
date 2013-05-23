@@ -51,7 +51,7 @@ The following mocha options are supported
 
 ### Generating coverage reports
 
-Here is an example gruntfile that regsisters 2 test tasks, 1 to run the tests and 1 to generate a coverage report using `blanket.js` to instrument the javascript on the fly.
+Here is an example gruntfile that registers 2 test tasks, 1 to run the tests and 1 to generate a coverage report using `blanket.js` to instrument the javascript on the fly.
 
 ```
 $ npm install blanket
@@ -179,7 +179,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 $ npm test
 ```
 
-## Using Vagrant
+### Using Vagrant
 To use the Vagrantfile you will also need to install the chef omnibus vagrant plugin
 
 ```
