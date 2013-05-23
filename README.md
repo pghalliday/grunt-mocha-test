@@ -19,7 +19,6 @@ grunt.loadNpmTasks('grunt-mocha-test');
 Here is an example gruntfile that regsisters 2 test tasks, 1 to run the tests and 1 to generate a coverage report using `blanket.js` to instrument the javascript on the fly.
 
 ```javascript
-/*global module:false*/
 module.exports = function(grunt) {
 
   // Add our custom tasks.
