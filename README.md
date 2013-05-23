@@ -31,18 +31,30 @@ module.exports = function(grunt) {
     mochaTest: {
       test: {
         options: {
-          reporter: 'spec'
+          reporter: 'spec',
+          // Require blanket wrapper here to instrument other required
+          // files on the fly. 
+          //
+          // NB. We cannot require blanket directly as it
+          // detects that we are not running mocha cli and loads differently.
+          //
+          // NNB. As mocha is 'clever' enough to only run the tests once for
+          // each file the following coverage task does not actually run any
+          // tests which is why the coverage instrumentation has to be done here
+          require: 'coverage/blanket'
         },
         src: ['test/**/*.js']
       },
       coverage: {
         options: {
           reporter: 'html-cov',
-          require: 'blanket', // require blanket to instrument other required files on the fly
-          quiet: true         // use the quiet flag to suppress the mocha console output
+          // use the quiet flag to suppress the mocha console output
+          quiet: true
         },
         src: ['test/**/*.js'],
-        dest: 'coverage.html' // specify a destination file to capture the mocha output (the quiet option does not suppress this)
+        // specify a destination file to capture the mocha
+        // output (the quiet option does not suppress this)
+        dest: 'coverage.html'
       }
     }
   });
@@ -50,6 +62,14 @@ module.exports = function(grunt) {
   // Default task.
   grunt.registerTask('default', 'mochaTest');
 };
+```
+
+As noted above it is necessary to wrap the blanket require when calling mocha programatically so `coverage/blanket.js` should look something like this.
+
+```javascript
+require('blanket')({
+  pattern: '/src/'
+});
 ```
 
 The following mocha options are supported
