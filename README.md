@@ -172,6 +172,7 @@ Don't forget to update `package.json` with options for `travis-cov`, for example
 
 ## Roadmap
 
+- Stream captures directly to file rather than a local variable to save on memory usage
 - Mock growl binaries so that the growl test actually checks if growl is called
 
 ## Contributing
