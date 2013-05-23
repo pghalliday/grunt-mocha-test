@@ -1,12 +1,31 @@
 var Mocha = require('mocha');
 var domain = require('domain');
+var fs = require('fs');
+var path = require('path');
 
 function MochaWrapper(params) {
   var mocha = new Mocha(params.options);
 
-  // if require option is specified then add that file first
+  // If require option is specified then require that file.
+  // This code has been adapted from the treatment of the require
+  // option in the mocha source (bin/_mocha)
+  var cwd = process.cwd();
+  var join = path.join;
+  module.paths.push(cwd, join(cwd, 'node_modules'));
   if (params.options && params.options.require) {
-    mocha.addFile(params.options.require);
+    var mod = params.options.require;
+    // This was in the original mocha code but as far as I can tell
+    // it does nothing as fs.exists is asynchronous and always returns
+    // undefined - I am commmenting it out in order to maintain 100%
+    // coverage, if issues are raised against the require option then
+    // maybe this will be a solution??...
+    //
+    // var abs = fs.exists(mod) || fs.exists(mod + '.js');
+    // console.log(abs);
+    // if (abs) {
+    //   mod = join(cwd, mod);
+    // }
+    require(mod);
   }
 
   params.files.forEach(mocha.addFile.bind(mocha));
@@ -55,6 +74,7 @@ function MochaWrapper(params) {
           });
         });
         // I wish I could just do this...
+        //
         // mocha.run(function(failureCount) {
         //   callback(null, failureCount);
         // });
