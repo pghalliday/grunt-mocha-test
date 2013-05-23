@@ -1,0 +1,1 @@
+default[:node][:version]      = "HEAD"

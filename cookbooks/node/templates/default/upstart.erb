@@ -1,0 +1,15 @@
+description "node.js <%= @name %> server"
+author      "Tikibooth, super inspired by kvz - http://kevin.vanzonneveld.net"
+
+
+start on started mountall
+stop on shutdown
+
+script
+    export HOME=<%= @user_home %>
+    exec sudo -u <%= @user %> /usr/local/bin/node <%= @script %>  <%= @args %> >> /var/log/node-<%= @name %>.log 2>&1
+end script
+
+post-start script
+    echo "`date`: node-<%= @name %> (re)started" >> /var/log/node-<%= @name %>.log 2>&1
+end script

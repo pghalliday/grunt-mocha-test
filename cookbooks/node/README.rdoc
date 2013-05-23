@@ -1,0 +1,60 @@
+= DESCRIPTION:
+
+This cookbook will deploy node and npm (node package manager) to your system. It also defines providers to install/uninstall node module and start/stop/restart node servers.
+
+* homepage : https://github.com/digitalbutter/cookbook-node
+
+= REQUIREMENTS:
+
+* a working git framework (for example provided by Opscode git cookbook)
+
+Tested on ubuntu. Should work on other system with upstart.
+
+= ATTRIBUTES:
+
+* node/version : indicates which version to install. Default is the latest ('HEAD'). Since node evolves very quickly and is not always that stable, you might want to set it to a stable version (for example 'v0.4.3')
+
+= USAGE:
+
+Include the node recipe to download, compile and install node along with npm.
+
+== defines:
+
++node_server+ provider to start/stop server. The following example will start a provided script with node. Logs can be found in /var/log/node-my_node_server.log.
+
+    node_server "my_node_server" do
+        script "/path/to/your/node/script.js" # mandatory
+        user "my_user" # default : root
+        dependency ["required","node","modules"] # default []. Will be installed with npm before starting the server
+        args "arguments for your script" # default ""
+        action :start # Will start a node server. In [stop,start,restart]
+    end
+
++node_npm+ provider to manage nodejs modules. The following example will install the connect module for node.
+
+    node_npm "connect" do
+        action :install
+    end
+
+= LICENSE & AUTHOR:
+
+Author::
+* Emmanuel Prochasson (<emmanuel@tikibooth.com>)
+* Ed Bosher (<edbo@tikibooth.com>)
+
+Contributor:
+* Jon Wood (<jon@blankpad.net>)
+
+Copyright:: 2011, Tikibooth Limited
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
