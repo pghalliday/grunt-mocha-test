@@ -32,11 +32,15 @@ function MochaWrapper(params) {
 
   this.run = function(callback) {
     // This init domain will catch asynchronous (uncaught) exceptions
-    // thrown as a result of loading the test files, this is fine as
-    // long as the tests have not already completed successfully before
-    // the exception is thrown (which probably would not make sense anyway).
-    // In such cases the exception will be reported but grunt will also report
-    // "Done, without errors."
+    // thrown as a result of loading the test files
+    //
+    // NB. this is fine as long as the tests have not already completed
+    // successfully before the exception is thrown (which probably would
+    // not make sense anyway). In such cases the exception will be
+    // reported but grunt will also report "Done, without errors.".
+    //
+    // NNB. occasionally this does not work and the asyncRequireFailure
+    // test will fail... but only occasionally
     var initDomain = domain.create();
     initDomain.on('error', callback);
     initDomain.run(function() {
