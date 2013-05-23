@@ -8,36 +8,36 @@ var mergeCoverageData = function(data) {
   // we have to reconstruct the the _$jscoverage data
   // format as it cannot be stringified to JSON with
   // the additional source property added to arrays
+  if (typeof global._$jscoverage === 'undefined') global._$jscoverage = {};
   var jscoverage = global._$jscoverage;
   var sourceArrays = data.sourceArrays;
   var callCounts = data.callCounts;
-  if (jscoverage) {
-    for (var filename in sourceArrays) {
-      var dest = jscoverage[filename];
-      var src = callCounts[filename];
-      src.source = sourceArrays[filename];
-      if (typeof dest === 'undefined') {
-        jscoverage[filename] = src;
-      } else {
-        src.forEach(function(count, index) {
-          if (count !== null) {
-            dest[index] += count;
-          }
-        });
-      }
+  for (var filename in sourceArrays) {
+    var dest = jscoverage[filename];
+    var src = callCounts[filename];
+    src.source = sourceArrays[filename];
+    if (typeof dest === 'undefined') {
+      jscoverage[filename] = src;
+    } else {
+      src.forEach(function(count, index) {
+        if (count !== null) {
+          dest[index] += count;
+        }
+      });
     }
   }
 };
 
 var execScenario = function(scenario, callback) {
-  var child = exec('node ../grunt.js', {cwd: __dirname + '/../scenarios/' + scenario}, function(error, stdout, stderr) {
-    // collect coverage data from stdout if it exists
+  var scenarioDir = __dirname + '/../scenarios/' + scenario;
+  var child = exec('node ../grunt.js', {cwd: scenarioDir}, function(error, stdout, stderr) {
+    // collect coverage data from file if it exists
     // this is because the coverage tool does not
     // really work with child processes so we are
     // giving it a helping hand
-    var jscoverage = stdout.match(/##jscoverage##(.+)/);
-    if (jscoverage) {
-      mergeCoverageData(JSON.parse(jscoverage[1]));
+    var jscoverageFile = scenarioDir + '/jscoverage.json';
+    if (fs.existsSync(jscoverageFile)) {
+      mergeCoverageData(JSON.parse(fs.readFileSync(jscoverageFile)));
     }
     callback(error, stdout, stderr);
   });

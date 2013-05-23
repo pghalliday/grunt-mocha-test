@@ -1,6 +1,8 @@
 module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-blanket');
 
   // Add our custom tasks.
@@ -33,14 +35,21 @@ module.exports = function(grunt) {
         src: ['grunt.js', 'tasks/**/*.js', 'test/**/*.js']
       }
     },
+    clean: {
+      coverage: {
+        src: ['.coverage/']
+      }
+    },
+    copy: {
+      test: {
+        src: ['test/**'],
+        dest: '.coverage/'
+      }
+    },
     blanket: {
       tasks: {
         src: ['tasks/'],
         dest: '.coverage/tasks/'
-      },
-      test: {
-        src: ['test/'],
-        dest: '.coverage/test/'
       }
     },
     mochaTest: {
@@ -64,6 +73,6 @@ module.exports = function(grunt) {
   // Default task.
   grunt.registerTask('lint', ['jshint']);
   grunt.registerTask('test', ['mochaTest:all']);
-  grunt.registerTask('coverage', ['blanket', 'mochaTest:coverage']);
+  grunt.registerTask('coverage', ['clean', 'blanket', 'copy', 'mochaTest:coverage']);
   grunt.registerTask('default', ['lint', 'test', 'coverage']);
 };
