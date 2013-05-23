@@ -18,6 +18,30 @@ grunt.loadNpmTasks('grunt-mocha-test');
 
 ## Documentation
 
+Here is a simple example gruntfile if you just want to run tests
+
+```javascript
+module.exports = function(grunt) {
+
+  // Add our custom tasks.
+  grunt.loadNpmTasks('grunt-mocha-test');
+
+  // Project configuration.
+  grunt.initConfig({
+    mochaTest: {
+      test: {
+        options: {
+          reporter: 'spec',
+        },
+        src: ['test/**/*.js']
+      },
+  });
+
+  // Default task.
+  grunt.registerTask('default', 'mochaTest');
+};
+```
+
 Here is an example gruntfile that regsisters 2 test tasks, 1 to run the tests and 1 to generate a coverage report using `blanket.js` to instrument the javascript on the fly.
 
 ```javascript
