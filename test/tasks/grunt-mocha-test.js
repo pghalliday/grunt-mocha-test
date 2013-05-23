@@ -8,7 +8,9 @@ var mergeCoverageData = function(data) {
   // we have to reconstruct the the _$jscoverage data
   // format as it cannot be stringified to JSON with
   // the additional source property added to arrays
-  if (typeof global._$jscoverage === 'undefined') global._$jscoverage = {};
+  if (typeof global._$jscoverage === 'undefined') {
+    global._$jscoverage = {};
+  }
   var jscoverage = global._$jscoverage;
   var sourceArrays = data.sourceArrays;
   var callCounts = data.callCounts;

@@ -22,6 +22,7 @@ npm-debug.log
 
 # coverage stuff
 .coverage
+coverage.html
 
 # test stuff
 test/scenarios/destinationFile/output
