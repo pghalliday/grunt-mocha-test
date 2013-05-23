@@ -4,14 +4,6 @@
 
 A grunt task for running server side mocha tests
 
-## Getting Started
-
-Then add this line to your project's `Gruntfile.js` gruntfile:
-
-```javascript
-grunt.loadNpmTasks('grunt-mocha-test');
-```
-
 ## Usage
 
 Install next to your project's Gruntfile.js with: 
@@ -20,17 +12,7 @@ Install next to your project's Gruntfile.js with:
 $ npm install grunt-mocha-test
 ```
 
-The following mocha options are supported
-
-- grep
-- ui
-- reporter
-- timeout
-- invert
-- ignoreLeaks
-- growl
-- globals
-- require
+### Running tests
 
 Here is a simple example gruntfile if you just want to run tests
 
@@ -54,6 +36,20 @@ module.exports = function(grunt) {
   grunt.registerTask('default', 'mochaTest');
 };
 ```
+
+The following mocha options are supported
+
+- grep
+- ui
+- reporter
+- timeout
+- invert
+- ignoreLeaks
+- growl
+- globals
+- require
+
+### Generating coverage reports
 
 Here is an example gruntfile that regsisters 2 test tasks, 1 to run the tests and 1 to generate a coverage report using `blanket.js` to instrument the javascript on the fly.
 
@@ -110,6 +106,8 @@ require('blanket')({
   pattern: '/src/'
 });
 ```
+
+### Failing tests if a coverage threshold is not reached
 
 Building on the previous example, if you wish to have your tests fail if it falls below a certain coverage threshold then I advise using the `travis-cov` reporter
 
