@@ -57,22 +57,26 @@ module.exports = function(grunt) {
         options: {
           reporter: 'spec',
         },
-        src: ['test/tasks/**/*.js']
+        src: ['.coverage/test/tasks/**/*.js']
       },
-      coverage: {
+      'html-cov': {
         options: {
           reporter: 'html-cov',
           quiet: true
         },
         src: ['.coverage/test/tasks/**/*.js'],
         dest: 'coverage.html'
+      },
+      'travis-cov': {
+        options: {
+          reporter: 'travis-cov'
+        },
+        src: ['.coverage/test/tasks/**/*.js']
       }
     },
   });
 
   // Default task.
-  grunt.registerTask('lint', ['jshint']);
-  grunt.registerTask('test', ['mochaTest:all']);
-  grunt.registerTask('coverage', ['clean', 'blanket', 'copy', 'mochaTest:coverage']);
-  grunt.registerTask('default', ['lint', 'test', 'coverage']);
+  grunt.registerTask('build', ['clean', 'blanket', 'copy']);
+  grunt.registerTask('default', ['jshint', 'build', 'mochaTest']);
 };

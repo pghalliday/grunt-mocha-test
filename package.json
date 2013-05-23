@@ -27,7 +27,10 @@
     "node": ">= 0.10.4"
   },
   "scripts": {
-    "test": "grunt"
+    "test": "grunt",
+    "travis-cov": {
+      "threshold": 100
+    }
   },
   "dependencies": {
     "mocha": "~1.9.0"
@@ -39,7 +42,8 @@
     "grunt-contrib-jshint": "~0.4.3",
     "grunt-blanket": "0.0.8",
     "grunt-contrib-copy": "~0.4.1",
-    "grunt-contrib-clean": "~0.4.1"
+    "grunt-contrib-clean": "~0.4.1",
+    "travis-cov": "~0.2.4"
   },
   "keywords": [
     "gruntplugin",
