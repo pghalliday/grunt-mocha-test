@@ -56,7 +56,9 @@ module.exports = function(grunt) {
 
 Here is an example gruntfile that regsisters 2 test tasks, 1 to run the tests and 1 to generate a coverage report using `blanket.js` to instrument the javascript on the fly.
 
-`$ npm install blanket`
+```
+$ npm install blanket
+```
 
 ```javascript
 module.exports = function(grunt) {
@@ -112,7 +114,9 @@ require('blanket')({
 
 Building on the previous example, if you wish to have your tests fail if it falls below a certain coverage threshold then I advise using the `travis-cov` reporter
 
-`$ npm install travis-cov`
+```
+$ npm install travis-cov
+```
 
 ```javascript
 module.exports = function(grunt) {
@@ -180,14 +184,10 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 ## Using Vagrant
 To use the Vagrantfile you will also need to install the chef omnibus vagrant plugin
 
-`$ vagrant plugin install vagrant-omnibus`
-
-The node cookbook has been added as a git submodule so you will also have to initialise and update the submodules after cloning the repository
-
 ```
-$ git submodule init
-$ git submodule update
+$ vagrant plugin install vagrant-omnibus
 ```
+
 
 ## License
 Copyright (c) 2012 Peter Halliday  
