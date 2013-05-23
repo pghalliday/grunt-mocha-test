@@ -3,6 +3,12 @@ var domain = require('domain');
 
 function MochaWrapper(params) {
   var mocha = new Mocha(params.options);
+
+  // if require option is specified then add that file first
+  if (params.options && params.options.require) {
+    mocha.addFile(params.options.require);
+  }
+
   params.files.forEach(mocha.addFile.bind(mocha));
 
   this.run = function(callback) {
