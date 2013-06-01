@@ -177,10 +177,11 @@ $ npm test
 ```
 
 ### Using Vagrant
-To use the Vagrantfile you will also need to install the chef omnibus vagrant plugin
+To use the Vagrantfile you will also need to install the following vagrant plugins
 
 ```
 $ vagrant plugin install vagrant-omnibus
+$ vagrant plugin install vagrant-berkshelf
 ```
 
 

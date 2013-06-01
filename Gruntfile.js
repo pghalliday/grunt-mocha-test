@@ -37,41 +37,43 @@ module.exports = function(grunt) {
     },
     clean: {
       coverage: {
-        src: ['.coverage/']
+        src: ['lib-cov/']
       }
     },
     copy: {
       test: {
         src: ['test/**'],
-        dest: '.coverage/'
+        dest: 'lib-cov/'
       }
     },
     blanket: {
       tasks: {
         src: ['tasks/'],
-        dest: '.coverage/tasks/'
+        dest: 'lib-cov/tasks/'
       }
     },
     mochaTest: {
       all: {
         options: {
           reporter: 'spec',
+          // tests are quite slow as thy spawn node processes
+          timeout: 4000
         },
-        src: ['.coverage/test/tasks/**/*.js']
+        src: ['lib-cov/test/tasks/**/*.js']
       },
       'html-cov': {
         options: {
           reporter: 'html-cov',
           quiet: true
         },
-        src: ['.coverage/test/tasks/**/*.js'],
+        src: ['lib-cov/test/tasks/**/*.js'],
         dest: 'coverage.html'
       },
       'travis-cov': {
         options: {
           reporter: 'travis-cov'
         },
-        src: ['.coverage/test/tasks/**/*.js']
+        src: ['lib-cov/test/tasks/**/*.js']
       }
     },
   });

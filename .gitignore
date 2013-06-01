@@ -1,16 +1,3 @@
-lib-cov
-*.seed
-*.log
-*.csv
-*.dat
-*.out
-*.pid
-*.gz
-
-pids
-logs
-results
-
 node_modules
 npm-debug.log
 
@@ -20,8 +7,11 @@ npm-debug.log
 # vagrant stuff
 .vagrant
 
+# berkshelf stuff
+Berksfile.lock
+
 # coverage stuff
-.coverage
+lib-cov
 coverage.html
 
 # test stuff
