@@ -85,6 +85,14 @@ describe('grunt-mocha-test', function() {
     });
   });
 
+  it('should cleanly catch and log net connect exceptions thrown asynchronously by Mocha so that grunt does not exit early', function(done) {
+    execScenario('connectFailure', function(error, stdout, stderr) {
+      expect(stdout).to.match(/Aborted due to warnings./);
+      expect(stderr).to.match(/1 of 1 test failed/);
+      done();
+    });
+  });
+
   it('should cleanly catch and log require exceptions thrown asynchronously by Mocha so that grunt does not exit early', function(done) {
     execScenario('asyncRequireFailure', function(error, stdout, stderr) {
       expect(stdout).to.match(/Cannot find module 'doesNotExist/);

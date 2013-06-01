@@ -29,7 +29,7 @@ Vagrant.configure("2") do |config|
       chef.json = {
         "nodejs" => {
           "install_method" => "source",
-          "version" => "0.10.9"
+          "version" => "0.10.4"
         }
       }
       chef.run_list = [
