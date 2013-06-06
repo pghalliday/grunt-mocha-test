@@ -18,7 +18,7 @@ $ npm install grunt-mocha-test
 Here is a simple example gruntfile if you just want to run tests
 
 ```javascript
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
   // Add the grunt-mocha-test tasks.
   grunt.loadNpmTasks('grunt-mocha-test');
@@ -26,15 +26,17 @@ module.exports = function(grunt) {
   grunt.initConfig({
     // Configure a mochaTest task
     mochaTest: {
-      test: {
-        options: {
-          reporter: 'spec',
+        test: {
+          options: {
+          reporter: 'spec'
         },
         src: ['test/**/*.js']
-      },
+      }
+    }
   });
 
   grunt.registerTask('default', 'mochaTest');
+
 };
 ```
 
