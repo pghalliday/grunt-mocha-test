@@ -50,7 +50,7 @@ describe('grunt-mocha-test', function() {
     execScenario('tests', function(error, stdout, stderr) {
       expect(stdout).to.match(/test1/);
       expect(stdout).to.match(/test2/);
-      expect(stdout).to.match(/2 tests complete/);
+      expect(stdout).to.match(/2 passing/);
       expect(stdout).to.match(/Done, without errors./);
       expect(stderr).to.equal('');
       done();
@@ -61,7 +61,7 @@ describe('grunt-mocha-test', function() {
     execScenario('testFailure', function(error, stdout, stderr) {
       expect(stdout).to.match(/test/);
       expect(stdout).to.match(/Aborted due to warnings./);
-      expect(stderr).to.match(/1 of 1 test failed/);
+      expect(stderr).to.match(/1 failing/);
       done();
     });
   });
@@ -70,7 +70,7 @@ describe('grunt-mocha-test', function() {
     execScenario('asyncTestFailure', function(error, stdout, stderr) {
       expect(stdout).to.match(/Asynchronous test/);
       expect(stdout).to.match(/Aborted due to warnings./);
-      expect(stderr).to.match(/1 of 1 test failed/);
+      expect(stderr).to.match(/1 failing/);
       done();
     });
   });
@@ -88,7 +88,7 @@ describe('grunt-mocha-test', function() {
   it('should cleanly catch and log net connect exceptions thrown asynchronously by Mocha so that grunt does not exit early', function(done) {
     execScenario('connectFailure', function(error, stdout, stderr) {
       expect(stdout).to.match(/Aborted due to warnings./);
-      expect(stderr).to.match(/1 of 1 test failed/);
+      expect(stderr).to.match(/1 failing/);
       done();
     });
   });
@@ -106,7 +106,7 @@ describe('grunt-mocha-test', function() {
   it('should support the require option', function(done) {
     execScenario('requireOption', function(error, stdout, stderr) {
       expect(stdout).to.match(/test/);
-      expect(stdout).to.match(/1 test complete/);
+      expect(stdout).to.match(/1 passing/);
       expect(stdout).to.match(/Done, without errors./);
       expect(stderr).to.equal('');
       done();
@@ -116,7 +116,7 @@ describe('grunt-mocha-test', function() {
   it('should support the grep option', function(done) {
     execScenario('grepOption', function(error, stdout, stderr) {
       expect(stdout).to.match(/tests that match grep/);
-      expect(stdout).to.match(/1 test complete/);
+      expect(stdout).to.match(/1 passing/);
       expect(stdout).to.match(/Done, without errors./);
       expect(stderr).to.equal('');
       done();
@@ -126,7 +126,7 @@ describe('grunt-mocha-test', function() {
   it('should support the invert option', function(done) {
     execScenario('invertOption', function(error, stdout, stderr) {
       expect(stdout).to.match(/tests that don't match grep/);
-      expect(stdout).to.match(/1 test complete/);
+      expect(stdout).to.match(/1 passing/);
       expect(stdout).to.match(/Done, without errors./);
       expect(stderr).to.equal('');
       done();
@@ -137,7 +137,7 @@ describe('grunt-mocha-test', function() {
     execScenario('ignoreLeaksOption', function(error, stdout, stderr) {
       expect(stdout).to.match(/test/);
       expect(stdout).to.match(/Aborted due to warnings./);
-      expect(stderr).to.match(/1 of 1 test failed/);
+      expect(stderr).to.match(/1 failing/);
       expect(stderr).to.match(/Error: global leak detected: leak/);
       done();
     });
@@ -146,7 +146,7 @@ describe('grunt-mocha-test', function() {
   it('should support the globals option', function(done) {
     execScenario('globalsOption', function(error, stdout, stderr) {
       expect(stdout).to.match(/test/);
-      expect(stdout).to.match(/1 test complete/);
+      expect(stdout).to.match(/1 passing/);
       expect(stdout).to.match(/Done, without errors./);
       expect(stderr).to.equal('');
       done();
@@ -157,7 +157,7 @@ describe('grunt-mocha-test', function() {
     execScenario('asyncOnlyOption', function(error, stdout, stderr) {
       expect(stdout).to.match(/test/);
       expect(stdout).to.match(/Aborted due to warnings./);
-      expect(stderr).to.match(/1 of 1 test failed/);
+      expect(stderr).to.match(/1 failing/);
       expect(stderr).to.match(/Error: --async-only option in use without declaring/);
       done();
     });
@@ -175,7 +175,7 @@ describe('grunt-mocha-test', function() {
     execScenario('uiOption', function(error, stdout, stderr) {
       expect(stdout).to.match(/test1/);
       expect(stdout).to.match(/test2/);
-      expect(stdout).to.match(/2 tests complete/);
+      expect(stdout).to.match(/2 passing/);
       expect(stdout).to.match(/Done, without errors./);
       expect(stderr).to.equal('');
       done();
@@ -186,7 +186,7 @@ describe('grunt-mocha-test', function() {
     execScenario('timeoutOption', function(error, stdout, stderr) {
       expect(stdout).to.match(/test/);
       expect(stdout).to.match(/Aborted due to warnings./);
-      expect(stderr).to.match(/1 of 1 test failed/);
+      expect(stderr).to.match(/1 failing/);
       expect(stderr).to.match(/Error: timeout of 500ms exceeded/);
       done();
     });
@@ -202,7 +202,7 @@ describe('grunt-mocha-test', function() {
       // be done for each platform though.
       expect(stdout).to.match(/test1/);
       expect(stdout).to.match(/test2/);
-      expect(stdout).to.match(/2 tests complete/);
+      expect(stdout).to.match(/2 passing/);
       expect(stdout).to.match(/Done, without errors./);
       expect(stderr).to.equal('');
       done();
@@ -220,7 +220,7 @@ describe('grunt-mocha-test', function() {
     execScenario('destinationFile', function(error, stdout, stderr) {
       expect(stdout).to.match(/test1/);
       expect(stdout).to.match(/test2/);
-      expect(stdout).to.match(/2 tests complete/);
+      expect(stdout).to.match(/2 passing/);
       expect(stdout).to.match(/Done, without errors./);
       expect(stderr).to.equal('');
 
@@ -228,7 +228,7 @@ describe('grunt-mocha-test', function() {
       var output = fs.readFileSync(destinationFile, 'utf8');
       expect(output).to.match(/test1/);
       expect(output).to.match(/test2/);
-      expect(output).to.match(/2 tests complete/);
+      expect(output).to.match(/2 passing/);
 
       done();
     });
@@ -245,7 +245,7 @@ describe('grunt-mocha-test', function() {
     execScenario('quietOption', function(error, stdout, stderr) {
       expect(stdout).to.not.match(/test1/);
       expect(stdout).to.not.match(/test2/);
-      expect(stdout).to.not.match(/2 tests complete/);
+      expect(stdout).to.not.match(/2 passing/);
       expect(stdout).to.match(/Done, without errors./);
       expect(stderr).to.equal('');
 
@@ -253,7 +253,7 @@ describe('grunt-mocha-test', function() {
       var output = fs.readFileSync(destinationFile, 'utf8');
       expect(output).to.match(/test1/);
       expect(output).to.match(/test2/);
-      expect(output).to.match(/2 tests complete/);
+      expect(output).to.match(/2 passing/);
 
       done();
     });
