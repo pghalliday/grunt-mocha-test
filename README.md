@@ -188,5 +188,5 @@ $ vagrant plugin install vagrant-berkshelf
 
 
 ## License
-Copyright (c) 2013 Peter Halliday  
+Copyright &copy; 2013 Peter Halliday  
 Licensed under the MIT license.

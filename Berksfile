@@ -1,3 +1,3 @@
 site :opscode
 
-cookbook "nodejs"
+cookbook "grunt-mocha-test", path: "cookbooks/grunt-mocha-test"
