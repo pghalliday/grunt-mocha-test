@@ -39,30 +39,28 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('mochaTest', 'Run node unit tests with Mocha', function() {
     var done = this.async();
     var options = this.options();
+    var files = this.files;
 
-    // asynchronously loop through the file specifications
-    grunt.util.async.forEachSeries(this.files, function(file) {
-      capture(file.dest, options.quiet, function(complete) {
-        var mochaWrapper = new MochaWrapper({
-          files: file.src,
-          options: options
-        });
-        mochaWrapper.run(function(error, failureCount) {
-          if (error) {
-            grunt.log.error('Mocha exploded!');
-            grunt.log.error(error.stack);
-            complete(error);
-          } else {
-            complete(null, failureCount);
-          }
-        });
-      }, function(error, failureCount) {
+    capture(options.captureFile, options.quiet, function(complete) {
+      var mochaWrapper = new MochaWrapper({
+        files: files,
+        options: options
+      });
+      mochaWrapper.run(function(error, failureCount) {
         if (error) {
-          done(false);
+          grunt.log.error('Mocha exploded!');
+          grunt.log.error(error.stack);
+          complete(error);
         } else {
-          done(failureCount === 0);
+          complete(null, failureCount);
         }
       });
+    }, function(error, failureCount) {
+      if (error) {
+        done(false);
+      } else {
+        done(failureCount === 0);
+      }
     });
   });
 };

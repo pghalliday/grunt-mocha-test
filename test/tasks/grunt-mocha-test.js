@@ -57,6 +57,17 @@ describe('grunt-mocha-test', function() {
     });
   });
 
+  it('should run tests from the supplied files with expand option', function(done) {
+    execScenario('testsExpand', function(error, stdout, stderr) {
+      expect(stdout).to.match(/test1/);
+      expect(stdout).to.match(/test2/);
+      expect(stdout).to.match(/2 passing/);
+      expect(stdout).to.match(/Done, without errors./);
+      expect(stderr).to.equal('');
+      done();
+    });
+  });
+
   it('should report the number of test failures and exit grunt with an error on failed tests', function(done) {
     execScenario('testFailure', function(error, stdout, stderr) {
       expect(stdout).to.match(/test/);

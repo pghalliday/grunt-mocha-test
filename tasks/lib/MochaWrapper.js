@@ -23,7 +23,9 @@ function MochaWrapper(params) {
     require(mod);
   }
 
-  params.files.forEach(mocha.addFile.bind(mocha));
+  params.files.forEach(function(file) {
+    file.src.forEach(mocha.addFile.bind(mocha));
+  });
 
   this.run = function(callback) {
     // This init domain will catch asynchronous (uncaught) exceptions

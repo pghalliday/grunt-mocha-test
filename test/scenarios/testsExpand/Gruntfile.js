@@ -6,10 +6,11 @@ module.exports = function(grunt) {
   grunt.initConfig({
     mochaTest: {
       options: {
-        reporter: 'spec',
-        captureFile: 'output'
+        reporter: 'spec'
       },
       all: {
+        expand: true,
+        cwd: 'subfolder',
         src: ['*.js']
       }
     }

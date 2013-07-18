@@ -87,12 +87,12 @@ module.exports = function(grunt) {
         options: {
           reporter: 'html-cov',
           // use the quiet flag to suppress the mocha console output
-          quiet: true
+          quiet: true,
+          // specify a destination file to capture the mocha
+          // output (the quiet option does not suppress this)
+          captureFile: 'coverage.html'
         },
-        src: ['test/**/*.js'],
-        // specify a destination file to capture the mocha
-        // output (the quiet option does not suppress this)
-        dest: 'coverage.html'
+        src: ['test/**/*.js']
       }
     }
   });
@@ -135,10 +135,10 @@ module.exports = function(grunt) {
       'html-cov': {
         options: {
           reporter: 'html-cov',
-          quiet: true
+          quiet: true,
+          captureFile: 'coverage.html'
         },
-        src: ['test/**/*.js'],
-        dest: 'coverage.html'
+        src: ['test/**/*.js']
       },
       // The travis-cov reporter will fail the tests if the
       // coverage falls below the threshold configured in package.json

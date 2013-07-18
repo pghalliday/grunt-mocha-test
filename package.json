@@ -1,7 +1,7 @@
 {
   "name": "grunt-mocha-test",
   "description": "A grunt task for running server side mocha tests",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "homepage": "https://github.com/pghalliday/grunt-mocha-test",
   "author": {
     "name": "Peter Halliday",
@@ -33,16 +33,16 @@
     }
   },
   "dependencies": {
-    "mocha": "~1.11.0"
+    "mocha": "~1.12.0"
   },
   "devDependencies": {
     "grunt-cli": "~0.1.8",
     "grunt": "~0.4.1",
     "chai": "~1.7.0",
-    "grunt-contrib-jshint": "~0.5.4",
+    "grunt-contrib-jshint": "~0.6.0",
     "grunt-blanket": "~0.0.8",
     "grunt-contrib-copy": "~0.4.1",
-    "grunt-contrib-clean": "~0.4.1",
+    "grunt-contrib-clean": "~0.5.0",
     "travis-cov": "~0.2.4"
   },
   "keywords": [

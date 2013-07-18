@@ -10,10 +10,10 @@ module.exports = function(grunt) {
       },
       all: {
         options: {
-          quiet: true
+          quiet: true,
+          captureFile: 'output'
         },
-        src: ['*.js'],
-        dest: 'output'
+        src: ['*.js']
       }
     }
   });

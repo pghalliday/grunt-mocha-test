@@ -64,10 +64,10 @@ module.exports = function(grunt) {
       'html-cov': {
         options: {
           reporter: 'html-cov',
-          quiet: true
+          quiet: true,
+          captureFile: 'coverage.html'
         },
-        src: ['lib-cov/test/tasks/**/*.js'],
-        dest: 'coverage.html'
+        src: ['lib-cov/test/tasks/**/*.js']
       },
       'travis-cov': {
         options: {
