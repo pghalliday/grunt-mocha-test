@@ -114,6 +114,16 @@ describe('grunt-mocha-test', function() {
     });
   });
 
+  it('should cleanly catch and log exceptions thrown asynchronously by supertest so that grunt does not exit early', function(done) {
+    execScenario('asyncSupertestFailure', function(error, stdout, stderr) {
+      expect(stdout).to.match(/test/);
+      expect(stdout).to.match(/1 passing/);
+      expect(stdout).to.match(/Aborted due to warnings./);
+      expect(stderr).to.match(/1 failing/);
+      done();
+    });
+  });
+
   it('should support the require option', function(done) {
     execScenario('requireOption', function(error, stdout, stderr) {
       expect(stdout).to.match(/test/);
