@@ -41,6 +41,21 @@ module.exports = function(grunt) {
     var options = this.options();
     var files = this.files;
 
+    // Another hack copied from
+    // https://github.com/gregrperkins/grunt-mocha-hack
+    // This time we are preventing grunt handling asynchronous
+    // exceptions that are thrown when handling asynchronous exceptions
+    // (I think) - See the `asyncSuperTest` scenario
+    // var uncaughtExceptionHandlers = process.listeners('uncaughtException');
+    // process.removeAllListeners('uncaughtException');
+    // var unmanageExceptions = function() {
+    //   uncaughtExceptionHandlers.forEach(
+    //     process.on.bind(process, 'uncaughtException'));
+    // };
+    // var restore = function() {
+    //   unmanageExceptions();
+    // };
+
     capture(options.captureFile, options.quiet, function(complete) {
       var mochaWrapper = new MochaWrapper({
         files: files,
@@ -56,6 +71,8 @@ module.exports = function(grunt) {
         }
       });
     }, function(error, failureCount) {
+      // restore the uncaught exception handlers
+      // restore();
       if (error) {
         done(false);
       } else {

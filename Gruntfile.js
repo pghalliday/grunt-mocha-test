@@ -28,7 +28,8 @@ module.exports = function(grunt) {
           describe: false,
           it: false,
           suite: false,
-          test: false
+          test: false,
+          before: false
         }
       },
       all: {
@@ -57,7 +58,7 @@ module.exports = function(grunt) {
         options: {
           reporter: 'spec',
           // tests are quite slow as thy spawn node processes
-          timeout: 4000
+          timeout: 10000
         },
         src: ['lib-cov/test/tasks/**/*.js']
       },

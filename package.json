@@ -43,7 +43,9 @@
     "grunt-blanket": "~0.0.8",
     "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-clean": "~0.5.0",
-    "travis-cov": "~0.2.4"
+    "travis-cov": "~0.2.4",
+    "supertest": "~0.7.1",
+    "express": "~3.3.4"
   },
   "keywords": [
     "gruntplugin",
