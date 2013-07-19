@@ -193,6 +193,16 @@ describe('grunt-mocha-test', function() {
     });
   });
 
+  it('should support using a custom ui option', function(done) {
+    execScenario('uiOptionCustom', function(error, stdout, stderr) {
+      expect(stdout).to.match(/test/);
+      expect(stdout).to.match(/1 passing/);
+      expect(stdout).to.match(/Done, without errors./);
+      expect(stderr).to.equal('');
+      done();
+    });
+  });
+
   it('should support the timeout option', function(done) {
     execScenario('timeoutOption', function(error, stdout, stderr) {
       expect(stdout).to.match(/test/);
