@@ -4,8 +4,6 @@ var fs = require('fs');
 var path = require('path');
 
 function MochaWrapper(params) {
-  var mocha = new Mocha(params.options);
-
   // If require option is specified then require that file.
   // This code has been adapted from the treatment of the require
   // option in the mocha source (bin/_mocha)
@@ -22,6 +20,8 @@ function MochaWrapper(params) {
     }
     require(mod);
   }
+
+  var mocha = new Mocha(params.options);
 
   params.files.forEach(function(file) {
     file.src.forEach(mocha.addFile.bind(mocha));
