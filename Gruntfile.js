@@ -29,7 +29,8 @@ module.exports = function(grunt) {
           it: false,
           suite: false,
           test: false,
-          before: false
+          before: false,
+          after: false
         }
       },
       all: {
