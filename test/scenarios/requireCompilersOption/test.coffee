@@ -1,5 +1,8 @@
 expect = require('chai').expect
+Test = require './lib'
 
 describe 'test coffee-script', =>
   it 'should pass', =>
-    expect(true).to.be.true
+    test = new Test 'Peter'
+    expect(test.sayHello()).to.equal 'Hello, Peter'
+    expect(testVar).to.equal 'test'
