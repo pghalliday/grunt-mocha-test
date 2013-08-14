@@ -13,12 +13,14 @@ function MochaWrapper(params) {
   var exists = fs.existsSync;
   module.paths.push(cwd, join(cwd, 'node_modules'));
   if (params.options && params.options.require) {
-    var mod = params.options.require;
-    var abs = exists(mod) || exists(mod + '.js');
-    if (abs) {
-      mod = resolve(mod);
-    }
-    require(mod);
+    var mods = params.options.require instanceof Array ? params.options.require : [params.options.require];
+    mods.forEach(function(mod) {
+      var abs = exists(mod) || exists(mod + '.js');
+      if (abs) {
+        mod = resolve(mod);
+      }
+      require(mod);
+    });
   }
 
   var mocha = new Mocha(params.options);
