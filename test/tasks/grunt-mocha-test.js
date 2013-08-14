@@ -134,8 +134,8 @@ describe('grunt-mocha-test', function() {
     });
   });
 
-  it('should support the compilers option', function(done) {
-    execScenario('compilersOption', function(error, stdout, stderr) {
+  it('should support the require option with coffee-script', function(done) {
+    execScenario('requireCompilersOption', function(error, stdout, stderr) {
       expect(stdout).to.match(/test coffee-script/);
       expect(stdout).to.match(/1 passing/);
       expect(stdout).to.match(/Done, without errors./);
