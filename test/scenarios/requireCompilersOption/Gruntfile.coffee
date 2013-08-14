@@ -12,7 +12,7 @@ module.exports = (grunt) ->
           './globals'
         ]
       all:
-        src: ['*.coffee']
+        src: ['test.coffee']
 
   # Default task.
   grunt.registerTask 'default', ['mochaTest']
