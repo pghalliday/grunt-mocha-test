@@ -50,6 +50,7 @@ The following mocha options are supported
 - ignoreLeaks
 - growl
 - globals
+- bail
 - require
 
 ### Generating coverage reports
