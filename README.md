@@ -59,6 +59,10 @@ The Mocha `--compilers` option is almost identical to the `--require` option but
 
 The following example shows the use of the CoffeeScript compiler.
 
+```
+$ npm install coffee-script
+```
+
 ```javascript
 mochaTest: {
   test: {
