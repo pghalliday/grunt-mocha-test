@@ -53,6 +53,43 @@ The following mocha options are supported
 - bail
 - require
 
+### Specifying compilers
+
+The Mocha `--compilers` option is almost identical to the `--require` option but with additional functionality for use with the Mocha `--watch` mode. As the `--watch` mode is not relevant for this plugin there is no need to implement a separate `compilers` option and actually the `require` option should be used instead.
+
+The following example shows the use of the CoffeeScript compiler.
+
+```javascript
+mochaTest: {
+  test: {
+    options: {
+      reporter: 'spec',
+      require: 'coffee-script'
+    },
+    src: ['test/**/*.coffee']
+  }
+}
+```
+
+In order to make this more user friendly the `require` option can take either a single file or an array of files in case you have other globals you wish to require.
+
+eg.
+
+```javascript
+mochaTest: {
+  test: {
+    options: {
+      reporter: 'spec',
+      require: [
+        'coffee-script',
+        './globals.js'
+      ]
+    },
+    src: ['test/**/*.coffee']
+  }
+}
+```
+
 ### Generating coverage reports
 
 Here is an example gruntfile that registers 2 test tasks, 1 to run the tests and 1 to generate a coverage report using `blanket.js` to instrument the javascript on the fly.
