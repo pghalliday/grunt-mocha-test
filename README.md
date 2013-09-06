@@ -90,6 +90,8 @@ mochaTest: {
 }
 ```
 
+NB. The `require` option can only be used with Javascript files, ie. it is not possible to specify a `./globals.coffee` in the above example.
+
 ### Generating coverage reports
 
 Here is an example gruntfile that registers 2 test tasks, 1 to run the tests and 1 to generate a coverage report using `blanket.js` to instrument the javascript on the fly.
