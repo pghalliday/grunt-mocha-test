@@ -55,6 +55,9 @@ function MochaWrapper(params) {
       if (mochaOptions.growl) {
         mocha._growl(mochaRunner, mochaReporter);
       }
+      if (mocha.options.colors != null) {
+        Mocha.reporters.Base.useColors = mocha.options.colors;
+      }
 
       var runDomain = domain.create();
       runDomain.on('error', mochaRunner.uncaught.bind(mochaRunner));

@@ -52,6 +52,7 @@ The following mocha options are supported
 - globals
 - bail
 - require
+- colors (specify as "colors: true")
 
 ### Specifying compilers
 
