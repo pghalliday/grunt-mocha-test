@@ -223,13 +223,18 @@ $ npm test
 ```
 
 ### Using Vagrant
-To use the Vagrantfile you will also need to install the following vagrant plugins
+To use the Vagrantfile you will also need to install the following bindler plugin to manage the other plugin dependencies.
 
 ```
-$ vagrant plugin install vagrant-omnibus
-$ vagrant plugin install vagrant-berkshelf
+vagrant plugin install bindler
+vagrant bindler setup
 ```
 
+Then install the required plugins with
+
+```
+vagrant plugin bundle
+```
 
 ## License
 Copyright &copy; 2013 Peter Halliday  

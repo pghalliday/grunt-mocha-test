@@ -11,8 +11,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "grunt-mocha-test" do |node|
     node.vm.hostname = "grunt-mocha-test"
-    node.vm.box = "ubuntu1204"
-    node.vm.box_url = "https://opscode-vm.s3.amazonaws.com/vagrant/opscode_ubuntu-12.04_provisionerless.box"
+    node.vm.box = "precise-server-cloudimg-amd64"
+    node.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
 
     node.vm.provider :virtualbox do |vb|
       # Give enough horsepower to build without taking all day.

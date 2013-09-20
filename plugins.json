@@ -1,0 +1,4 @@
+[
+  {"vagrant-omnibus": "1.1.1"},
+  {"vagrant-berkshelf": "1.3.3"}
+]
