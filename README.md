@@ -97,6 +97,21 @@ mochaTest: {
 
 NB. The `require` option can only be used with Javascript files, ie. it is not possible to specify a `./globals.coffee` in the above example.
 
+### Specifying a Mocha module
+
+If you would like to use a different version of Mocha than the one packaged with this plugin, you can specify the module with the `mocha` option:
+
+```
+mochaTest: {
+  test: {
+    options: {
+      mocha: require('mocha')
+    },
+    src: ['test/**/*.coffee']
+  }
+}
+```
+
 ### Generating coverage reports
 
 Here is an example gruntfile that registers 2 test tasks, 1 to run the tests and 1 to generate a coverage report using `blanket.js` to instrument the javascript on the fly.
