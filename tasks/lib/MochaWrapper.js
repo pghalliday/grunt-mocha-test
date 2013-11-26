@@ -25,6 +25,12 @@ function MochaWrapper(params) {
 
   var mocha = new Mocha(params.options);
 
+  if (params.options.clearRequireCache === true) {
+    Object.keys(require.cache).forEach(function (key) {
+      delete require.cache[key];
+    });
+  }
+
   params.files.forEach(function(file) {
     file.src.forEach(mocha.addFile.bind(mocha));
   });
