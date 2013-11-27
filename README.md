@@ -216,6 +216,57 @@ Don't forget to update `package.json` with options for `travis-cov`, for example
   ...
 ```
 
+### Running in permanent environments (like watch)
+
+In some instances, for example when you are running grunt-mocha-test in a grunt watch environment using the `spawn: false` option, you might get in a spot where each test is run only once. After that it will be ignored until
+you always get: `0 passing` as a result of your tests.
+
+This happens because mocha loads your test using require. Thus once it has been loaded once in a specific process, it won't run again. To prevent this from happening, use the `clearRequireCache` option (default value is `false`).
+
+Here is an example allowing you to run only the modified tests when possible:
+
+```javascript
+module.exports = function(grunt) {
+
+  grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+
+  grunt.initConfig({
+    mochaTest: {
+      test: {
+        options: {
+          reporter: 'spec',
+          clearRequireCache: true
+        },
+        src: ['test/**/*.js']
+      },
+    },
+
+    watch: {
+      js: {
+        options: {
+          spawn: false,
+        },
+        files: '**/*.js',
+        tasks: ['check']
+      }
+    }
+  });
+
+  // On watch events configure mochaTest to run only on the test if it is one
+  // otherwise, run the whole testsuite
+  var defaultSimpleSrc = grunt.config('mochaTest.simple.src');
+  grunt.event.on('watch', function(action, filepath) {
+    grunt.config('mochaTest.simple.src', defaultSimpleSrc);
+    if (filepath.match('test/')) {
+      grunt.config('mochaTest.simple.src', filepath);
+    }
+  });
+
+  grunt.registerTask('default', 'mochaTest');
+};
+```
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using: 
 

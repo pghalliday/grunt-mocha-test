@@ -152,6 +152,19 @@ describe('grunt-mocha-test', function() {
     });
   });
 
+  it('should support the clearRequireCacheOption', function(done) {
+    execScenario('clearRequireCacheOption', function(error, stdout, stderr) {
+      expect(stdout).to.match(/mochaTest:on/);
+      expect(stdout).to.match(/mochaTest:off/);
+      expect(stdout).to.match(/1 passing/);
+      expect(stdout).not.to.match(/0 passing/);
+      expect(stdout).not.to.match(/2 passing/);
+      expect(stdout).to.match(/Done, without errors./);
+      expect(stderr).to.equal('');
+      done();
+    });
+  });
+
   it('should support the grep option', function(done) {
     execScenario('grepOption', function(error, stdout, stderr) {
       expect(stdout).to.match(/tests that match grep/);
