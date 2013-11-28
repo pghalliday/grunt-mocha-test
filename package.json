@@ -35,13 +35,13 @@
     }
   },
   "dependencies": {
-    "mocha": "~1.13.0"
+    "mocha": "~1.14.0"
   },
   "devDependencies": {
-    "grunt-cli": "~0.1.9",
-    "grunt": "~0.4.1",
-    "chai": "~1.8.0",
-    "grunt-contrib-jshint": "~0.6.4",
+    "grunt-cli": "~0.1.11",
+    "grunt": "~0.4.2",
+    "chai": "~1.8.1",
+    "grunt-contrib-jshint": "~0.7.1",
     "grunt-blanket": "~0.0.8",
     "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-clean": "~0.5.0",
