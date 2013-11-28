@@ -320,4 +320,19 @@ describe('grunt-mocha-test', function() {
       done();
     });
   });
+
+  it('should support the mocha option', function(done) {
+    var destinationFile = __dirname + '/../scenarios/mochaOption/output';
+
+    // first remove the destination file
+    if (fs.existsSync(destinationFile)) {
+      fs.unlinkSync(destinationFile);
+    }
+
+    execScenario('mochaOption', function(error, stdout, stderr) {
+      expect(stdout).to.match(/Custom Mocha constructor/);
+      expect(stderr).to.equal('');
+      done();
+    });
+  });
 });
