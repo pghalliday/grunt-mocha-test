@@ -1,4 +1,3 @@
-var Mocha = require('mocha');
 var domain = require('domain');
 var fs = require('fs');
 var path = require('path');
@@ -23,6 +22,7 @@ function MochaWrapper(params) {
     });
   }
 
+  var Mocha = params.options.mocha || require('mocha');
   var mocha = new Mocha(params.options);
 
   if (params.options.clearRequireCache === true) {
