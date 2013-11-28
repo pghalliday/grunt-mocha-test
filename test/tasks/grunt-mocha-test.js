@@ -165,6 +165,16 @@ describe('grunt-mocha-test', function() {
     });
   });
 
+  it('should support the clearRequireCacheOption with the require option', function(done) {
+    execScenario('clearRequireCacheAndRequireOptions', function(error, stdout, stderr) {
+      expect(stdout).to.match(/test/);
+      expect(stdout).to.match(/1 passing/);
+      expect(stdout).to.match(/Done, without errors./);
+      expect(stderr).to.equal('');
+      done();
+    });
+  });
+
   it('should support the grep option', function(done) {
     execScenario('grepOption', function(error, stdout, stderr) {
       expect(stdout).to.match(/tests that match grep/);
