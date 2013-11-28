@@ -216,6 +216,10 @@ Don't forget to update `package.json` with options for `travis-cov`, for example
   ...
 ```
 
+NB. This is no longer supported in the latest version of NPM where `scripts` can only be strings. There is currently a pull request open on `travis-cov` to move the configuration to the `config` entry.
+
+https://github.com/alex-seville/travis-cov/issues/2
+
 ### Running in permanent environments (like watch)
 
 In some instances, for example when you are running grunt-mocha-test in a grunt watch environment using the `spawn: false` option, you might get in a spot where each test is run only once. After that it will be ignored until

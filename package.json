@@ -27,7 +27,9 @@
     "node": ">= 0.10.4"
   },
   "scripts": {
-    "test": "grunt",
+    "test": "grunt"
+  },
+  "config": {
     "travis-cov": {
       "threshold": 100
     }
@@ -43,7 +45,7 @@
     "grunt-blanket": "~0.0.8",
     "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-clean": "~0.5.0",
-    "travis-cov": "~0.2.4",
+    "travis-cov": "git+https://github.com/kitcambridge/travis-cov.git#config",
     "coffee-script": "~1.6.3"
   },
   "keywords": [
