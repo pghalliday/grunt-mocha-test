@@ -1,0 +1,8 @@
+/cookbooks/
+/test/
+/vagrant-scripts/
+.travis.yml
+Berksfile
+Gruntfile.js
+Vagrantfile
+plugins.json
