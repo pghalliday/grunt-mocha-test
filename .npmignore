@@ -1,8 +1,16 @@
 /cookbooks/
 /test/
 /vagrant-scripts/
+/.vagrant/
+/node_modules/
+npm-debug.log
+.DS_Store
+Berksfile.lock
+lib-cov
+coverage.html
 .travis.yml
 Berksfile
 Gruntfile.js
 Vagrantfile
 plugins.json
+.npmignore
