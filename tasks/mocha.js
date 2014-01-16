@@ -41,6 +41,14 @@ module.exports = function(grunt) {
     var options = this.options();
     var files = this.files;
 
+    // check if there are files to test
+    if (this.filesSrc.length === 0) {
+      grunt.log.write('No files to check...');
+      grunt.log.ok();
+      done(true);
+      return;
+    }
+
     // Another hack copied from
     // https://github.com/gregrperkins/grunt-mocha-hack
     // This time we are preventing grunt handling asynchronous
