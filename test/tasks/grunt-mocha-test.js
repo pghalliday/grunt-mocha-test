@@ -348,8 +348,6 @@ describe('grunt-mocha-test', function() {
 
   it('should not run if the src config do not match any files', function(done) {
     execScenario('noFiles', function(error, stdout, stderr) {
-      console.log(stdout);
-      console.log(stderr);
       expect(stdout).to.match(/No files to check.../);
       expect(stdout).to.match(/Done, without errors./);
       expect(stdout).not.to.match(/0 passing/);
