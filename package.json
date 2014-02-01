@@ -35,18 +35,18 @@
     }
   },
   "dependencies": {
-    "mocha": "~1.14.0"
+    "mocha": "~1.17.1"
   },
   "devDependencies": {
-    "grunt-cli": "~0.1.11",
+    "grunt-cli": "~0.1.13",
     "grunt": "~0.4.2",
-    "chai": "~1.8.1",
-    "grunt-contrib-jshint": "~0.7.1",
+    "chai": "~1.9.0",
+    "grunt-contrib-jshint": "~0.8.0",
     "grunt-blanket": "~0.0.8",
-    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-copy": "~0.5.0",
     "grunt-contrib-clean": "~0.5.0",
-    "travis-cov": "git+https://github.com/kitcambridge/travis-cov.git#config",
-    "coffee-script": "~1.6.3"
+    "travis-cov": "~0.2.5",
+    "coffee-script": "~1.7.1"
   },
   "keywords": [
     "gruntplugin",
