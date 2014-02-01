@@ -35,7 +35,8 @@
     }
   },
   "dependencies": {
-    "mocha": "~1.17.1"
+    "mocha": "~1.17.1",
+    "hooker": "~0.2.3"
   },
   "devDependencies": {
     "grunt-cli": "~0.1.13",
