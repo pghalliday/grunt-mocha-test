@@ -1,6 +1,10 @@
+'use strict';
+
+var MochaWrapper = require('./lib/MochaWrapper');
+var fs= require('fs');
+var hooker = require('hooker');
+
 module.exports = function(grunt) {
-  var MochaWrapper = require('./lib/MochaWrapper');
-  var fs= require('fs');
 
   // Helper to capture task output (adapted from tests for grunt-contrib-jshint)
   var capture = function(captureFile, quiet, run, done) {
@@ -9,7 +13,6 @@ module.exports = function(grunt) {
       fd = fs.openSync(captureFile, 'w');
     }
     // Hook process.stdout.write
-    var hooker = grunt.util.hooker;
     hooker.hook(process.stdout, 'write', {
       // This gets executed before the original process.stdout.write
       pre: function(result) {
