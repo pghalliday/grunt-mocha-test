@@ -126,7 +126,7 @@ describe('grunt-mocha-test', function() {
 
   it('should support the colors option', function(done) {
     execScenario('colorsOption', function(error, stdout, stderr) {
-      expect(stdout).to.match(/\u001b\[4mRunning \"mochaTest:all\" \(mochaTest\) task\u001b\[24m\n\n\n  test\n    ◦ should be ok: \n    ✓ should be ok \n\n\n  1 passing/);
+      expect(stdout).to.match(/\u001b\[4mRunning \"mochaTest:all\" \(mochaTest\) task\u001b\[24m\n\n\n  test\n\r    ✓ should be ok \n\n\n  1 passing/);
       expect(stderr).to.equal('');
       done();
     });
