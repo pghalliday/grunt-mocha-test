@@ -177,7 +177,7 @@ This will preprocess all `.js` files in the `src` directory. Note that `Blanket`
 
 In most cases it may be more useful to instrument files before running tests. This has the added advantage of creating intermediate files that will match the line numbers reported in exception reports. Here is one possible `Gruntfile.js` that uses the `grunt-blanket` plug in.
 
-``` javascript
+```javascript
 module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-mocha-test');
@@ -192,13 +192,13 @@ module.exports = function(grunt) {
       }
     },
     copy: {
-      test: {
+      coverage: {
         src: ['test/**'],
         dest: 'coverage/'
       }
     },
     blanket: {
-      tasks: {
+      coverage: {
         src: ['src/'],
         dest: 'coverage/src/'
       }
