@@ -380,3 +380,12 @@ vagrant plugin bundle
 ## License
 Copyright &copy; 2014 Peter Halliday  
 Licensed under the MIT license.
+
+## Donate
+
+Bitcoin donations gratefully received
+
+[![Donate](http://i.imgur.com/LoGtA56.png)](bitcoin:1C4aXW6UdtoE57SqFHvkEX2DC4YjBE4yti?amount=0.01&label=grunt-mocha-test)
+[1C4aXW6UdtoE57SqFHvkEX2DC4YjBE4yti](bitcoin:1C4aXW6UdtoE57SqFHvkEX2DC4YjBE4yti?amount=0.01&label=grunt-mocha-test)
+
+
