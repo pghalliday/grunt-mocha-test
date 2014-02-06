@@ -381,4 +381,4 @@ vagrant plugin bundle
 Copyright &copy; 2014 Peter Halliday  
 Licensed under the MIT license.
 
-<a class="coinbase-button" data-code="ca8d0a55eadb8deb0484ab366564c5fd" data-button-style="donation_large" href="https://coinbase.com/checkouts/ca8d0a55eadb8deb0484ab366564c5fd">Donate Bitcoins</a><script src="https://coinbase.com/assets/button.js" type="text/javascript"></script>
+[![Donate Bitcoins](https://coinbase.com/assets/buttons/donation_large-6ec72b1a9eec516944e50a22aca7db35.png)](https://coinbase.com/checkouts/9d121c0321590556b32241bbe7960362)
