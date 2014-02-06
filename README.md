@@ -381,12 +381,4 @@ vagrant plugin bundle
 Copyright &copy; 2014 Peter Halliday  
 Licensed under the MIT license.
 
-## Donate
-
-Bitcoin donations gratefully received
-
-![Donate](http://i.imgur.com/LoGtA56.png)
-
-1C4aXW6UdtoE57SqFHvkEX2DC4YjBE4yti
-
-
+<a class="coinbase-button" data-code="ca8d0a55eadb8deb0484ab366564c5fd" data-button-style="donation_large" href="https://coinbase.com/checkouts/ca8d0a55eadb8deb0484ab366564c5fd">Donate Bitcoins</a><script src="https://coinbase.com/assets/button.js" type="text/javascript"></script>
