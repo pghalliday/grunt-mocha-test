@@ -175,6 +175,69 @@ require('blanket')({
 
 This will preprocess all `.js` files in the `src` directory. Note that `Blanket` just uses pattern matching so this rework of the paths prevents files in `node_modules` being instrumented too. Also bear in mind using `Blanket` to instrument files on the fly only works if the file is not already in the require cache (this is an odd case but if you can't figure out why a file is not instrumented and the `pattern` looks ok then this may be the cause).
 
+### Failing tests if a coverage threshold is not reached
+
+Building on the previous example, if you wish to have your tests fail if it falls below a certain coverage threshold then I advise using the `travis-cov` reporter
+
+```
+npm install travis-cov
+```
+
+```javascript
+module.exports = function(grunt) {
+
+  grunt.loadNpmTasks('grunt-mocha-test');
+
+  grunt.initConfig({
+    mochaTest: {
+      test: {
+        options: {
+          reporter: 'spec',
+          require: 'coverage/blanket'
+        },
+        src: ['test/**/*.js']
+      },
+      'html-cov': {
+        options: {
+          reporter: 'html-cov',
+          quiet: true,
+          captureFile: 'coverage.html'
+        },
+        src: ['test/**/*.js']
+      },
+      // The travis-cov reporter will fail the tests if the
+      // coverage falls below the threshold configured in package.json
+      'travis-cov': {
+        options: {
+          reporter: 'travis-cov'
+        },
+        src: ['test/**/*.js']
+      }
+    }
+  });
+
+  grunt.registerTask('default', 'mochaTest');
+};
+```
+
+Don't forget to update `package.json` with options for `travis-cov`, for example:
+
+```javascript
+  ...
+
+  "config": {
+    "travis-cov": {
+      // Yes, I like to set the coverage threshold to 100% ;)
+      "threshold": 100
+    }
+  },
+
+  ...
+```
+
+### Instrumenting source files with coverage data before running tests
+
+
 In most cases it may be more useful to instrument files before running tests. This has the added advantage of creating intermediate files that will match the line numbers reported in exception reports. Here is one possible `Gruntfile.js` that uses the `grunt-blanket` plug in.
 
 ```
@@ -238,72 +301,7 @@ module.exports = function(grunt) {
 };
 ```
 
-It's more complicated but often easier to work with.
-
-### Failing tests if a coverage threshold is not reached
-
-Building on the previous example, if you wish to have your tests fail if it falls below a certain coverage threshold then I advise using the `travis-cov` reporter
-
-```
-npm install travis-cov
-```
-
-```javascript
-module.exports = function(grunt) {
-
-  grunt.loadNpmTasks('grunt-mocha-test');
-
-  grunt.initConfig({
-    mochaTest: {
-      test: {
-        options: {
-          reporter: 'spec',
-          require: 'coverage/blanket'
-        },
-        src: ['test/**/*.js']
-      },
-      'html-cov': {
-        options: {
-          reporter: 'html-cov',
-          quiet: true,
-          captureFile: 'coverage.html'
-        },
-        src: ['test/**/*.js']
-      },
-      // The travis-cov reporter will fail the tests if the
-      // coverage falls below the threshold configured in package.json
-      'travis-cov': {
-        options: {
-          reporter: 'travis-cov'
-        },
-        src: ['test/**/*.js']
-      }
-    }
-  });
-
-  grunt.registerTask('default', 'mochaTest');
-};
-```
-
-Don't forget to update `package.json` with options for `travis-cov`, for example:
-
-```javascript
-  ...
-
-  "scripts": {
-    "test": "grunt",
-    "travis-cov": {
-      // Yes, I like to set the coverage threshold to 100% ;)
-      "threshold": 100
-    }
-  },
-
-  ...
-```
-
-NB. This is no longer supported in the latest version of NPM where `scripts` can only be strings. There is currently a pull request open on `travis-cov` to move the configuration to the `config` entry.
-
-https://github.com/alex-seville/travis-cov/issues/2
+This will delete any previously instrumented files, copy the `test` to a `coverage` folder and instrument the `src` javascript files to the `coverage` folder. Lastly it runs tests from the `coverage` folder. It's more complicated but often easier to work with.
 
 ### Running in permanent environments (like watch)
 
