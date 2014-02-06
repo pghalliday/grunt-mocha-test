@@ -301,7 +301,7 @@ module.exports = function(grunt) {
 };
 ```
 
-This will delete any previously instrumented files, copy the `test` to a `coverage` folder and instrument the `src` javascript files to the `coverage` folder. Lastly it runs tests from the `coverage` folder. It's more complicated but often easier to work with.
+This will delete any previously instrumented files, copy the `test` files to a `coverage` folder and instrument the `src` javascript files to the `coverage` folder. Lastly it runs tests from the `coverage` folder. It's more complicated but often easier to work with.
 
 ### Running in permanent environments (like watch)
 
@@ -376,5 +376,5 @@ vagrant plugin bundle
 ```
 
 ## License
-Copyright &copy; 2013 Peter Halliday  
+Copyright &copy; 2014 Peter Halliday  
 Licensed under the MIT license.
