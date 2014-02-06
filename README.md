@@ -10,7 +10,7 @@ A grunt task for running server side mocha tests
 Install next to your project's Gruntfile.js with: 
 
 ```
-$ npm install grunt-mocha-test
+npm install grunt-mocha-test
 ```
 
 ### Running tests
@@ -61,7 +61,7 @@ The Mocha `--compilers` option is almost identical to the `--require` option but
 The following example shows the use of the CoffeeScript compiler.
 
 ```
-$ npm install coffee-script
+npm install coffee-script
 ```
 
 ```javascript
@@ -101,7 +101,7 @@ NB. The `require` option can only be used with Javascript files, ie. it is not p
 
 If you would like to use a different version of Mocha than the one packaged with this plugin, you can specify the module with the `mocha` option:
 
-```
+```javascript
 mochaTest: {
   test: {
     options: {
@@ -117,7 +117,7 @@ mochaTest: {
 Here is an example gruntfile that registers 2 test tasks, 1 to run the tests and 1 to generate a coverage report using `blanket.js` to instrument the javascript on the fly.
 
 ```
-$ npm install blanket
+npm install blanket
 ```
 
 ```javascript
@@ -176,6 +176,13 @@ require('blanket')({
 This will preprocess all `.js` files in the `src` directory. Note that `Blanket` just uses pattern matching so this rework of the paths prevents files in `node_modules` being instrumented too. Also bear in mind using `Blanket` to instrument files on the fly only works if the file is not already in the require cache (this is an odd case but if you can't figure out why a file is not instrumented and the `pattern` looks ok then this may be the cause).
 
 In most cases it may be more useful to instrument files before running tests. This has the added advantage of creating intermediate files that will match the line numbers reported in exception reports. Here is one possible `Gruntfile.js` that uses the `grunt-blanket` plug in.
+
+```
+npm install grunt-contrib-clean
+npm install grunt-contrib-copy
+npm install grunt-blanket
+npm install travis-cov
+```
 
 ```javascript
 module.exports = function(grunt) {
@@ -238,7 +245,7 @@ It's more complicated but often easier to work with.
 Building on the previous example, if you wish to have your tests fail if it falls below a certain coverage threshold then I advise using the `travis-cov` reporter
 
 ```
-$ npm install travis-cov
+npm install travis-cov
 ```
 
 ```javascript
@@ -353,7 +360,7 @@ module.exports = function(grunt) {
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using: 
 
 ```
-$ npm test
+npm test
 ```
 
 ### Using Vagrant
