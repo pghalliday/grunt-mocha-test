@@ -56,7 +56,7 @@ module.exports = function(grunt) {
       }
     },
     mochaTest: {
-      all: {
+      'spec': {
         options: {
           reporter: 'spec',
           // tests are quite slow as thy spawn node processes
@@ -72,7 +72,7 @@ module.exports = function(grunt) {
         },
         src: ['lib-cov/test/tasks/**/*.js']
       },
-      'lcov': {
+      'mocha-lcov-reporter': {
         options: {
           reporter: 'mocha-lcov-reporter',
           quiet: true,
@@ -88,7 +88,7 @@ module.exports = function(grunt) {
       }
     },
     coveralls: {
-      options: {
+      all: {
         src: 'lcov.info'
       }
     }
@@ -96,5 +96,6 @@ module.exports = function(grunt) {
 
   // Default task.
   grunt.registerTask('build', ['clean', 'blanket', 'copy']);
-  grunt.registerTask('default', ['jshint', 'build', 'mochaTest', 'coveralls']);
+  grunt.registerTask('default', ['jshint', 'build', 'mochaTest']);
+  grunt.registerTask('ci', ['default', 'coveralls']);
 };
