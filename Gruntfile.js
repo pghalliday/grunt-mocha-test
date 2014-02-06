@@ -4,6 +4,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-blanket');
+  grunt.loadNpmTasks('grunt-coveralls');
 
   // Add our custom tasks.
   grunt.loadTasks('tasks');
@@ -71,6 +72,14 @@ module.exports = function(grunt) {
         },
         src: ['lib-cov/test/tasks/**/*.js']
       },
+      'lcov': {
+        options: {
+          reporter: 'mocha-lcov-reporter',
+          quiet: true,
+          captureFile: 'lcov.info'
+        },
+        src: ['lib-cov/test/tasks/**/*.js']
+      },
       'travis-cov': {
         options: {
           reporter: 'travis-cov'
@@ -78,9 +87,15 @@ module.exports = function(grunt) {
         src: ['lib-cov/test/tasks/**/*.js']
       }
     },
+    coveralls: {
+      options: {
+        src: 'lcov.info',
+        force: false
+      }
+    }
   });
 
   // Default task.
   grunt.registerTask('build', ['clean', 'blanket', 'copy']);
-  grunt.registerTask('default', ['jshint', 'build', 'mochaTest']);
+  grunt.registerTask('default', ['jshint', 'build', 'mochaTest', 'coveralls']);
 };

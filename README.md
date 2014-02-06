@@ -1,6 +1,7 @@
 # grunt-mocha-test
 
 [![Build Status](https://travis-ci.org/pghalliday/grunt-mocha-test.png)](https://travis-ci.org/pghalliday/grunt-mocha-test)
+[![Coverage Status](https://coveralls.io/repos/pghalliday/grunt-mocha-test/badge.png)](https://coveralls.io/r/pghalliday/grunt-mocha-test)
 [![Dependency Status](https://gemnasium.com/pghalliday/grunt-mocha-test.png)](https://gemnasium.com/pghalliday/grunt-mocha-test)
 
 A grunt task for running server side mocha tests
