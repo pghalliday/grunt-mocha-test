@@ -164,11 +164,74 @@ module.exports = function(grunt) {
 As noted above it is necessary to wrap the blanket require when calling mocha programatically so `coverage/blanket.js` should look something like this.
 
 ```javascript
+var path = require('path');
+var srcDir = path.join(__dirname, '..', 'src');
+
 require('blanket')({
   // Only files that match the pattern will be instrumented
-  pattern: '/src/'
+  pattern: srcDir
 });
 ```
+
+This will preprocess all `.js` files in the `src` directory. Note that `Blanket` just uses pattern matching so this rework of the paths prevents files in `node_modules` being instrumented too. Also bear in mind using `Blanket` to instrument files on the fly only works if the file is not already in the require cache (this is an odd case but if you can't figure out why a file is not instrumented and the `pattern` looks ok then this may be the cause).
+
+In most cases it may be more useful to instrument files before running tests. This has the added advantage of creating intermediate files that will match the line numbers reported in exception reports. Here is one possible `Gruntfile.js` that uses the `grunt-blanket` plug in.
+
+``` javascript
+module.exports = function(grunt) {
+
+  grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-blanket');
+
+  grunt.initConfig({
+    clean: {
+      coverage: {
+        src: ['coverage/']
+      }
+    },
+    copy: {
+      test: {
+        src: ['test/**'],
+        dest: 'coverage/'
+      }
+    },
+    blanket: {
+      tasks: {
+        src: ['src/'],
+        dest: 'coverage/src/'
+      }
+    },
+    mochaTest: {
+      test: {
+        options: {
+          reporter: 'spec',
+        },
+        src: ['/coverage/test/**/*.js']
+      },
+      coverage: {
+        options: {
+          reporter: 'html-cov',
+          quiet: true,
+          captureFile: 'coverage.html'
+        },
+        src: ['/coverage/test/**/*.js']
+      },
+      'travis-cov': {
+        options: {
+          reporter: 'travis-cov'
+        },
+        src: ['/coverage/test/**/*.js']
+      }
+    }
+  });
+
+  grunt.registerTask('default', ['clean', 'blanket', 'copy', 'mochaTest']);
+};
+```
+
+It's more complicated but often easier to work with.
 
 ### Failing tests if a coverage threshold is not reached
 
