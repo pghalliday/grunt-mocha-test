@@ -14,6 +14,7 @@ Berksfile.lock
 # coverage stuff
 lib-cov
 coverage.html
+lcov.info
 
 # test stuff
 test/scenarios/destinationFile/output

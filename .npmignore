@@ -8,6 +8,7 @@ npm-debug.log
 Berksfile.lock
 lib-cov
 coverage.html
+lcov.info
 .travis.yml
 Berksfile
 Gruntfile.js
