@@ -12,7 +12,7 @@ A grunt task for running server side mocha tests
 Install next to your project's Gruntfile.js with: 
 
 ```
-npm install grunt-mocha-test
+npm install grunt-mocha-test --save-dev
 ```
 
 ### Running tests
