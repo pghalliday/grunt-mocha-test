@@ -8,7 +8,7 @@ module.exports = (grunt) ->
       options:
         reporter: 'spec',
         require: [
-          'coffee-script',
+          'coffee-script/register',
           './globals'
         ]
       all:

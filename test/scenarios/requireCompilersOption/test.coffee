@@ -6,3 +6,5 @@ describe 'test coffee-script', =>
     test = new Test 'Peter'
     expect(test.sayHello()).to.equal 'Hello, Peter'
     expect(testVar).to.equal 'test'
+    expect 1
+      .to.equal 1
