@@ -2,7 +2,7 @@
 
 var expect = require('chai').expect;
 var path = require('path');
-var fs = require('fs');
+var fs = require('fs-extra');
 var ChildProcess = require('cover-child-process').ChildProcess;
 var Blanket = require('cover-child-process').Blanket;
 var childProcess = new ChildProcess(new Blanket());
@@ -258,6 +258,32 @@ describe('grunt-mocha-test', function() {
     }
 
     execScenario('destinationFile', function(error, stdout, stderr) {
+      expect(stdout).to.match(/test1/);
+      expect(stdout).to.match(/test2/);
+      expect(stdout).to.match(/2 passing/);
+      expect(stdout).to.match(/Done, without errors./);
+      expect(stderr).to.equal('');
+
+      // now read the destination file
+      var output = fs.readFileSync(destinationFile, 'utf8');
+      expect(output).to.match(/test1/);
+      expect(output).to.match(/test2/);
+      expect(output).to.match(/2 passing/);
+
+      done();
+    });
+  });
+
+  it.only('should create parent directories for destination file', function(done) {
+    var destinationDirectory = path.join(__dirname, '/../scenarios/destinationFileCreateDirectories/reports');
+    var destinationFile = path.join(destinationDirectory, 'output');
+
+    // first remove the destination directory
+    if (fs.existsSync(destinationDirectory)) {
+      fs.removeSync(destinationDirectory);
+    }
+
+    execScenario('destinationFileCreateDirectories', function(error, stdout, stderr) {
       expect(stdout).to.match(/test1/);
       expect(stdout).to.match(/test2/);
       expect(stdout).to.match(/2 passing/);

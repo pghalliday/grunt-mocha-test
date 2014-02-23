@@ -1,7 +1,8 @@
 'use strict';
 
 var MochaWrapper = require('./lib/MochaWrapper');
-var fs= require('fs');
+var fs = require('fs-extra');
+var path = require('path');
 var hooker = require('hooker');
 
 module.exports = function(grunt) {
@@ -10,6 +11,7 @@ module.exports = function(grunt) {
   var capture = function(captureFile, quiet, run, done) {
     var fd;
     if (captureFile) {
+      fs.mkdirsSync(path.dirname(captureFile));
       fd = fs.openSync(captureFile, 'w');
     }
     // Hook process.stdout.write
