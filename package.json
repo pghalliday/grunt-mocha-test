@@ -38,7 +38,7 @@
   "dependencies": {
     "mocha": "~1.17.1",
     "hooker": "~0.2.3",
-    "fs-extra": "^0.8.1"
+    "fs-extra": "~0.8.1"
   },
   "devDependencies": {
     "grunt-cli": "~0.1.13",
@@ -52,7 +52,7 @@
     "coffee-script": "~1.7.1",
     "mocha-lcov-reporter": "0.0.1",
     "grunt-coveralls": "~0.3.0",
-    "cover-child-process": "^0.1.2"
+    "cover-child-process": "~0.1.2"
   },
   "keywords": [
     "gruntplugin",
