@@ -364,17 +364,11 @@ npm test
 ```
 
 ### Using Vagrant
-To use the Vagrantfile you will also need to install the following bindler plugin to manage the other plugin dependencies.
+To use the Vagrantfile you will also need to install the following plugins.
 
 ```
-vagrant plugin install bindler
-vagrant bindler setup
-```
-
-Then install the required plugins with
-
-```
-vagrant plugin bundle
+vagrant plugin install vagrant-omnibus
+vagrant plugin install vagrant-berkshelf
 ```
 
 ## License
