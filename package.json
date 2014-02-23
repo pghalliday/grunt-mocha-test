@@ -1,7 +1,7 @@
 {
   "name": "grunt-mocha-test",
   "description": "A grunt task for running server side mocha tests",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "homepage": "https://github.com/pghalliday/grunt-mocha-test",
   "author": {
     "name": "Peter Halliday",
@@ -52,7 +52,7 @@
     "coffee-script": "~1.7.1",
     "mocha-lcov-reporter": "0.0.1",
     "grunt-coveralls": "~0.3.0",
-    "cover-child-process": "~0.1.2"
+    "cover-child-process": "~0.1.4"
   },
   "keywords": [
     "gruntplugin",

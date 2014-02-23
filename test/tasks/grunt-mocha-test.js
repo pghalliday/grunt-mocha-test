@@ -274,7 +274,7 @@ describe('grunt-mocha-test', function() {
     });
   });
 
-  it.only('should create parent directories for destination file', function(done) {
+  it('should create parent directories for destination file', function(done) {
     var destinationDirectory = path.join(__dirname, '/../scenarios/destinationFileCreateDirectories/reports');
     var destinationFile = path.join(destinationDirectory, 'output');
 
