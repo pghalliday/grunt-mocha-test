@@ -50,7 +50,8 @@
     "travis-cov": "~0.2.5",
     "coffee-script": "~1.7.1",
     "mocha-lcov-reporter": "0.0.1",
-    "grunt-coveralls": "~0.3.0"
+    "grunt-coveralls": "~0.3.0",
+    "cover-child-process": "^0.1.2"
   },
   "keywords": [
     "gruntplugin",
