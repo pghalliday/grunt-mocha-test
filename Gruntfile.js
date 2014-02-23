@@ -88,6 +88,9 @@ module.exports = function(grunt) {
       }
     },
     coveralls: {
+      options: {
+        force: true
+      },
       all: {
         src: 'lcov.info'
       }
