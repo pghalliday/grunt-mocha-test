@@ -307,12 +307,11 @@ This will delete any previously instrumented files, copy the `test` files to a `
 
 ### Running in permanent environments (like watch)
 
-In some instances, for example when you are running grunt-mocha-test in a grunt watch environment using the `spawn: false` option, you might get in a spot where each test is run only once. After that it will be ignored until
-you always get: `0 passing` as a result of your tests.
+If you run `grunt-mocha-test` with `grunt-contrib-watch` using the `spawn: false` option, you will notice that the tests only run on the first change. Subsequent changes will result in an empty report with a `0 passing` message.
 
-This happens because mocha loads your test using require. Thus once it has been loaded once in a specific process, it won't run again. To prevent this from happening, use the `clearRequireCache` option (default value is `false`).
+This happens because `mocha` loads your tests using `require` resulting in them being added to the require cache. Thus once they have been loaded in a process the subsequent calls to `require` hit the cache without executing the code again. To prevent this from happening, use the `clearRequireCache` option (default value is `false`).
 
-Here is an example allowing you to run only the modified tests when possible:
+Here is an example that also demonstrates how to only run changed tests:
 
 ```javascript
 module.exports = function(grunt) {
@@ -344,9 +343,9 @@ module.exports = function(grunt) {
 
   // On watch events configure mochaTest to run only on the test if it is one
   // otherwise, run the whole testsuite
-  var defaultSimpleSrc = grunt.config('mochaTest.simple.src');
+  var defaultTestSrc = grunt.config('mochaTest.test.src');
   grunt.event.on('watch', function(action, filepath) {
-    grunt.config('mochaTest.test.src', defaultSimpleSrc);
+    grunt.config('mochaTest.test.src', defaultTestSrc);
     if (filepath.match('test/')) {
       grunt.config('mochaTest.test.src', filepath);
     }
