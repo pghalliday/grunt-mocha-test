@@ -337,7 +337,7 @@ module.exports = function(grunt) {
           spawn: false,
         },
         files: '**/*.js',
-        tasks: ['check']
+        tasks: ['default']
       }
     }
   });
@@ -346,9 +346,9 @@ module.exports = function(grunt) {
   // otherwise, run the whole testsuite
   var defaultSimpleSrc = grunt.config('mochaTest.simple.src');
   grunt.event.on('watch', function(action, filepath) {
-    grunt.config('mochaTest.simple.src', defaultSimpleSrc);
+    grunt.config('mochaTest.test.src', defaultSimpleSrc);
     if (filepath.match('test/')) {
-      grunt.config('mochaTest.simple.src', filepath);
+      grunt.config('mochaTest.test.src', filepath);
     }
   });
 
