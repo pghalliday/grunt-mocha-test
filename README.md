@@ -341,8 +341,8 @@ module.exports = function(grunt) {
     }
   });
 
-  // On watch events configure mochaTest to run only on the test if it is one
-  // otherwise, run the whole testsuite
+  // On watch events if the changed file is a test file then configure mochaTest to only
+  // run the tests from that file. Otherwise run all the tests
   var defaultTestSrc = grunt.config('mochaTest.test.src');
   grunt.event.on('watch', function(action, filepath) {
     grunt.config('mochaTest.test.src', defaultTestSrc);
