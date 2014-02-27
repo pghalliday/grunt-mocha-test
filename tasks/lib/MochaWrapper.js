@@ -14,11 +14,15 @@ function MochaWrapper(params) {
   if (params.options && params.options.require) {
     var mods = params.options.require instanceof Array ? params.options.require : [params.options.require];
     mods.forEach(function(mod) {
-      var abs = exists(mod) || exists(mod + '.js');
-      if (abs) {
-        mod = resolve(mod);
+      if (typeof mod === 'string') {
+        var abs = exists(mod) || exists(mod + '.js');
+        if (abs) {
+          mod = resolve(mod);
+        }
+        require(mod);
+      } else if (typeof mod === 'function') {
+        mod();
       }
-      require(mod);
     });
   }
 
