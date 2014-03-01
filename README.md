@@ -78,7 +78,7 @@ mochaTest: {
 }
 ```
 
-In order to make this more user friendly the `require` option can take either a single file or an array of files in case you have other globals you wish to require.
+In order to make this more user friendly, the `require` option can take either a single file/function or an array of files/functions in case you have other globals you wish to require.
 
 eg.
 
@@ -89,7 +89,9 @@ mochaTest: {
       reporter: 'spec',
       require: [
         'coffee-script/register',
-        './globals.js'
+        './globals.js',
+        function(){ testVar1=require('./stuff'); },
+        function(){ testVar2='other-stuff'; }
       ]
     },
     src: ['test/**/*.coffee']
@@ -97,7 +99,7 @@ mochaTest: {
 }
 ```
 
-NB. The `require` option can only be used with Javascript files, ie. it is not possible to specify a `./globals.coffee` in the above example.
+NB. File references for the `require` option can only be used with Javascript files, ie. it is not possible to specify a `./globals.coffee` in the above example.
 
 ### Specifying a Mocha module
 
