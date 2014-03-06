@@ -5,17 +5,10 @@ npm-debug.log
 # WebStorm Stuff
 .idea
 
-# vagrant stuff
-.vagrant
-
-# berkshelf stuff
-Berksfile.lock
-
 # coverage stuff
 lib-cov
-coverage.html
-lcov.info
+/reports
 
 # test stuff
-test/scenarios/destinationFile/output
-test/scenarios/quietOption/output
+/test/scenarios/destinationFile/output
+/test/scenarios/quietOption/output

@@ -41,6 +41,9 @@ module.exports = function(grunt) {
     clean: {
       coverage: {
         src: ['lib-cov/']
+      },
+      reports: {
+        src: ['reports/']
       }
     },
     copy: {
@@ -68,7 +71,7 @@ module.exports = function(grunt) {
         options: {
           reporter: 'html-cov',
           quiet: true,
-          captureFile: 'coverage.html'
+          captureFile: 'reports/coverage.html'
         },
         src: ['lib-cov/test/tasks/**/*.js']
       },
@@ -76,7 +79,7 @@ module.exports = function(grunt) {
         options: {
           reporter: 'mocha-lcov-reporter',
           quiet: true,
-          captureFile: 'lcov.info'
+          captureFile: 'reports/lcov.info'
         },
         src: ['lib-cov/test/tasks/**/*.js']
       },
@@ -92,7 +95,7 @@ module.exports = function(grunt) {
         force: true
       },
       all: {
-        src: 'lcov.info'
+        src: 'reports/lcov.info'
       }
     }
   });

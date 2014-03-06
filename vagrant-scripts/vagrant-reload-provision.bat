@@ -1,2 +1,0 @@
-cd ..
-vagrant reload --provision

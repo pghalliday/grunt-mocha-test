@@ -364,14 +364,6 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 npm test
 ```
 
-### Using Vagrant
-To use the Vagrantfile you will also need to install the following plugins.
-
-```
-vagrant plugin install vagrant-omnibus
-vagrant plugin install vagrant-berkshelf
-```
-
 ## License
 Copyright &copy; 2014 Peter Halliday  
 Licensed under the MIT license.
