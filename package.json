@@ -36,7 +36,7 @@
     }
   },
   "dependencies": {
-    "mocha": "~1.17.1",
+    "mocha": "~1.18.0",
     "hooker": "~0.2.3",
     "fs-extra": "~0.8.1"
   },
@@ -44,7 +44,7 @@
     "grunt-cli": "~0.1.13",
     "grunt": "~0.4.2",
     "chai": "~1.9.0",
-    "grunt-contrib-jshint": "~0.8.0",
+    "grunt-contrib-jshint": "~0.9.2",
     "grunt-blanket": "~0.0.8",
     "grunt-contrib-copy": "~0.5.0",
     "grunt-contrib-clean": "~0.5.0",
