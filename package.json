@@ -22,7 +22,6 @@
     }
   ],
   "main": "grunt.js",
-  "bin": "bin/grunt-mocha-test",
   "engines": {
     "node": ">= 0.10.4"
   },
