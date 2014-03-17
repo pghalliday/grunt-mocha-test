@@ -357,6 +357,34 @@ module.exports = function(grunt) {
 };
 ```
 
+### Using node flags
+
+There are some flags that Mocha supports that are actually Node flags, eg.
+
+- --debug
+- --harmony-generators
+
+It is currently not possible to set these at runtime when using Mocha as a library and as such cannot be supported by `grunt-mocha-test` without a major refactor (and severe impact on performance as it would involve spawning processes).
+
+The recommended way of using these flags would be to pass them to node when starting the grunt process. The simplest way to do this would be to leverage the [`scripts`](https://www.npmjs.org/doc/misc/npm-scripts.html) functionality of NPM and `package.json`.
+
+```
+  ...
+  },
+  "scripts": {
+    "test": "node --debug --harmony-generators ./node_modules/.bin/grunt test"
+  }
+  ...
+```
+
+The tests would then be run using
+
+```
+npm test
+```
+
+Note that this assumes that `grunt-cli` has been installed locally and not globally
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using: 
 
