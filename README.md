@@ -55,6 +55,7 @@ The following mocha options are supported
 - bail
 - require
 - colors (specify as "colors: true")
+- slow
 
 ### Specifying compilers
 
