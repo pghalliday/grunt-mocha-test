@@ -25,14 +25,7 @@ module.exports = function(grunt) {
         eqnull: true,
         node: true,
         strict: false,
-        globals: {
-          describe: false,
-          it: false,
-          suite: false,
-          test: false,
-          before: false,
-          after: false
-        }
+        mocha: true
       },
       all: {
         src: ['grunt.js', 'tasks/**/*.js', 'test/**/*.js']
