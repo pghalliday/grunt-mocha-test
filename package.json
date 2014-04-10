@@ -51,7 +51,8 @@
     "coffee-script": "~1.7.1",
     "mocha-lcov-reporter": "0.0.1",
     "grunt-coveralls": "~0.3.0",
-    "cover-child-process": "~0.1.5"
+    "cover-child-process": "~0.1.5",
+    "grunt-env": "^0.4.1"
   },
   "keywords": [
     "gruntplugin",

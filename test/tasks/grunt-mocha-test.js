@@ -349,4 +349,14 @@ describe('grunt-mocha-test', function() {
       done();
     });
   });
+
+  it.only('should work with grunt-env', function(done) {
+    execScenario('gruntEnvIntegration', function(error, stdout, stderr) {
+      expect(stdout).to.match(/test/);
+      expect(stdout).to.match(/1 passing/);
+      expect(stdout).to.match(/Done, without errors./);
+      expect(stderr).to.equal('');
+      done();
+    });
+  });
 });
