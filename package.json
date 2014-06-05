@@ -21,7 +21,6 @@
       "url": "https://github.com/pghalliday/grunt-mocha-test/blob/master/LICENSE-MIT"
     }
   ],
-  "main": "grunt.js",
   "engines": {
     "node": ">= 0.10.4"
   },
@@ -58,5 +57,9 @@
     "gruntplugin",
     "mocha",
     "test"
+  ],
+  "files": [
+    "tasks",
+    "LICENSE-MIT"
   ]
 }
