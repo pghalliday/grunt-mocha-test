@@ -110,6 +110,17 @@ describe('grunt-mocha-test', function() {
     });
   });
 
+  it('should support the require option with complicated globals', function(done) {
+    execScenario('requireSingleton', function(error, stdout, stderr) {
+      expect(stdout).to.match(/test1/);
+      expect(stdout).to.match(/test2/);
+      expect(stdout).to.match(/2 passing/);
+      expect(stdout).to.match(/Done, without errors./);
+      expect(stderr).to.equal('');
+      done();
+    });
+  });
+
   it('should support the require option with coffee-script', function(done) {
     execScenario('requireCompilersOption', function(error, stdout, stderr) {
       expect(stdout).to.match(/test coffee-script/);
