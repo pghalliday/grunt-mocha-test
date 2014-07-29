@@ -6,7 +6,7 @@ var fs = require('fs-extra');
 var ChildProcess = require('cover-child-process').ChildProcess;
 var Blanket = require('cover-child-process').Blanket;
 var childProcess = new ChildProcess(new Blanket());
-var gruntExec = 'node ' + path.resolve('node_modules/.bin/grunt');
+var gruntExec = 'node ' + path.resolve('node_modules/grunt-cli/bin/grunt');
 
 var execScenario = function(scenario, callback) {
   var scenarioDir = __dirname + '/../scenarios/' + scenario;
