@@ -112,18 +112,9 @@ NB. File references for the `require` option can only be used with Javascript fi
 
 ### Specifying a Mocha module
 
-If you would like to use a different version of Mocha than the one packaged with this plugin, you can specify the module with the `mocha` option:
-
-```javascript
-mochaTest: {
-  test: {
-    options: {
-      mocha: require('mocha')
-    },
-    src: ['test/**/*.coffee']
-  }
-}
-```
+`grunt-mocha-test` uses `npm`s `peerDependency` functionality and thus uses whatever version
+of `mocha` is installed in your project. If your project does not have `mocha` installed, a compatible
+version will automatically be installed when adding `grunt-mocha-test`.
 
 ### Generating coverage reports
 

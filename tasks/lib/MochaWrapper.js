@@ -1,6 +1,7 @@
 var domain = require('domain');
 var fs = require('fs');
 var path = require('path');
+var Mocha = require('mocha');
 
 function MochaWrapper(params) {
   // If require option is specified then require that file.
@@ -26,7 +27,6 @@ function MochaWrapper(params) {
     });
   }
 
-  var Mocha = params.options.mocha || require('mocha');
   var mocha = new Mocha(params.options);
 
   if (params.options.clearRequireCache === true) {
