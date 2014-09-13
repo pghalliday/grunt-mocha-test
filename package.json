@@ -1,12 +1,12 @@
 {
   "name": "grunt-mocha-test",
   "description": "A grunt task for running server side mocha tests",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "homepage": "https://github.com/pghalliday/grunt-mocha-test",
   "author": {
     "name": "Peter Halliday",
     "email": "pghalliday@gmail.com",
-    "url": "http://stuffpetedoes.blogspot.nl/"
+    "url": "http://pghalliday.github.io/"
   },
   "repository": {
     "type": "git",
