@@ -39,7 +39,9 @@ module.exports = function(grunt) {
     mochaTest: {
       test: {
         options: {
-          reporter: 'spec'
+          reporter: 'spec',
+          captureFile: 'results.txt', // Optionally capture the reporter output to a file
+          quiet: false // Optionally suppress output to standard out (defaults to false)
         },
         src: ['test/**/*.js']
       }
@@ -51,7 +53,7 @@ module.exports = function(grunt) {
 };
 ```
 
-The following mocha options are supported
+The following mocha options have also been tested
 
 - grep
 - ui
@@ -113,7 +115,7 @@ NB. File references for the `require` option can only be used with Javascript fi
 
 ### Specifying a Mocha module
 
-`grunt-mocha-test` uses `npm`s `peerDependency` functionality and thus uses whatever version
+`grunt-mocha-test` uses npm's `peerDependency` functionality and thus uses whatever version
 of `mocha` is installed in your project. If your project does not have `mocha` installed, a compatible
 version will automatically be installed when adding `grunt-mocha-test`.
 
