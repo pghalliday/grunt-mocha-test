@@ -41,7 +41,8 @@ module.exports = function(grunt) {
         options: {
           reporter: 'spec',
           captureFile: 'results.txt', // Optionally capture the reporter output to a file
-          quiet: false // Optionally suppress output to standard out (defaults to false)
+          quiet: false, // Optionally suppress output to standard out (defaults to false)
+          clearRequireCache: false // Optionally clear the require cache before running tests (defaults to false)
         },
         src: ['test/**/*.js']
       }
@@ -53,7 +54,15 @@ module.exports = function(grunt) {
 };
 ```
 
-The following mocha options have also been tested
+### Options
+
+The following options are specific to `grunt-mocha-test` (ie. not mocha options)
+
+- `captureFile` - specify a file to capture all output to (will include any output from `console.log`)
+- `quiet` - `true` to not output anything to console (normally used with the `captureFile` option when console output would not be human readable)
+- `clearRequireCache` - `true` to clear the require cache before each test run (normally used with watch when not spawning each test run in a new `nodejs` context)
+
+The following mocha options have also been tested (others may have been added since the time of writing through changes to mocha)
 
 - grep
 - ui
