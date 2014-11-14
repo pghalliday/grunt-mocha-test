@@ -2,11 +2,12 @@
 
 var expect = require('chai').expect;
 var path = require('path');
-var fs = require('fs-extra');
+var fs = require('fs');
 var ChildProcess = require('cover-child-process').ChildProcess;
 var Blanket = require('cover-child-process').Blanket;
 var childProcess = new ChildProcess(new Blanket());
 var gruntExec = 'node ' + path.resolve('node_modules/grunt-cli/bin/grunt');
+var rimrafSync = require('rimraf').sync;
 
 var execScenario = function(scenario, callback) {
   var scenarioDir = __dirname + '/../scenarios/' + scenario;
@@ -289,10 +290,7 @@ describe('grunt-mocha-test', function() {
     var destinationDirectory = path.join(__dirname, '/../scenarios/destinationFileCreateDirectories/reports');
     var destinationFile = path.join(destinationDirectory, 'output');
 
-    // first remove the destination directory
-    if (fs.existsSync(destinationDirectory)) {
-      fs.removeSync(destinationDirectory);
-    }
+    rimrafSync(destinationDirectory);
 
     execScenario('destinationFileCreateDirectories', function(error, stdout, stderr) {
       expect(stdout).to.match(/test1/);
