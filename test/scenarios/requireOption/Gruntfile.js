@@ -6,15 +6,20 @@ module.exports = function(grunt) {
   grunt.initConfig({
     mochaTest: {
       options: {
-        reporter: 'spec',
-        require: 'require/common'
+        reporter: 'spec'
       },
       all: {
+        src: ['*.js'],
+        options: {
+          require: 'require/common'
+        }
+      },
+      cli: {
         src: ['*.js']
       }
     }
   });
 
   // Default task.
-  grunt.registerTask('default', ['mochaTest']);
+  grunt.registerTask('default', ['mochaTest:all']);
 };

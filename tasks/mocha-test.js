@@ -47,6 +47,14 @@ module.exports = function(grunt) {
     var options = this.options();
     var files = this.files;
 
+    // mocha CLI parameters
+    var params = ['grep', 'ui', 'reporter', 'timeout', 'invert', 'ignoreLeaks', 'growl', 'globals', 'require', 'colors', 'slow'];
+
+    // for every supplied CLI parameter overwrite task option
+    params.forEach(function(param) {
+      options[param] = grunt.option(param) || options[param];
+    });
+
     // check if there are files to test
     if (this.filesSrc.length === 0) {
       grunt.log.write('No files to check...');
