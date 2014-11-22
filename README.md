@@ -408,6 +408,6 @@ npm test
 Copyright &copy; 2014 Peter Halliday  
 Licensed under the MIT license.
 
-[![Donate Bitcoins](http://i.imgur.com/b5BZsFH.png)](bitcoin:1KzTSfqjF2iKCduwz59nv2uqh1W2JsTxZH?amount=0.01&label=grunt-mocha-test)
+[![Donate Bitcoins](http://i.imgur.com/b5BZsFH.png)](bitcoin:17LtnRG4WxRLYBWzrBoEKP3F7fZx8vcAsK?amount=0.01&label=grunt-mocha-test)
 
 17LtnRG4WxRLYBWzrBoEKP3F7fZx8vcAsK
