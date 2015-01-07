@@ -12,3 +12,4 @@ lib-cov
 # test stuff
 /test/scenarios/destinationFile/output
 /test/scenarios/quietOption/output
+/test/scenarios/reporterOptions/output
