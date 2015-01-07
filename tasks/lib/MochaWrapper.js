@@ -53,8 +53,7 @@ function MochaWrapper(params) {
       var mochaSuite = mocha.suite;
       var mochaOptions = mocha.options;
       var mochaRunner = new Mocha.Runner(mochaSuite);
-      var mochaReporterOptions = mochaOptions.reporterOptions || {};
-      var mochaReporter = new mocha._reporter(mochaRunner, mochaReporterOptions);
+      var mochaReporter = new mocha._reporter(mochaRunner, mochaOptions);
       mochaRunner.ignoreLeaks = false !== mochaOptions.ignoreLeaks;
       mochaRunner.asyncOnly = mochaOptions.asyncOnly;
       if (mochaOptions.grep) {

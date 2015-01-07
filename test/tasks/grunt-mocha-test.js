@@ -391,4 +391,33 @@ describe('grunt-mocha-test', function() {
       done();
     });
   });
+
+  it('should support reporterOptions', function(done) {
+    var destinationFile = __dirname + '/../scenarios/reporterOptions/output';
+
+    // first remove the destination file
+    if (fs.existsSync(destinationFile)) {
+      fs.unlinkSync(destinationFile);
+    }
+
+    execScenario(gruntExec, 'reporterOptions', function(error, stdout, stderr) {
+      expect(stdout).to.not.match(/test/);
+      expect(stdout).to.not.match(/tests="1"/);
+      expect(stdout).to.not.match(/failures="0"/);
+      expect(stdout).to.not.match(/errors="0"/);
+      expect(stdout).to.not.match(/skipped="0"/);
+      expect(stdout).to.match(/Done, without errors./);
+      expect(stderr).to.equal('');
+
+      // now read the destination file
+      var output = fs.readFileSync(destinationFile, 'utf8');
+      expect(output).to.match(/test/);
+      expect(output).to.match(/tests="1"/);
+      expect(output).to.match(/failures="0"/);
+      expect(output).to.match(/errors="0"/);
+      expect(output).to.match(/skipped="0"/);
+
+      done();
+    });
+  });
 });
