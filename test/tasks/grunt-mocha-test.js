@@ -41,7 +41,8 @@ describe('grunt-mocha-test', function() {
     execScenario(gruntExec, 'testFailure', function(error, stdout, stderr) {
       expect(stdout).to.match(/test/);
       expect(stdout).to.match(/Aborted due to warnings./);
-      expect(stderr).to.match(/1 failing/);
+      expect(stdout).to.match(/1 failing/);
+      expect(stderr).to.equal('');
       done();
     });
   });
@@ -50,7 +51,8 @@ describe('grunt-mocha-test', function() {
     execScenario(gruntExec, 'asyncTestFailure', function(error, stdout, stderr) {
       expect(stdout).to.match(/Asynchronous test/);
       expect(stdout).to.match(/Aborted due to warnings./);
-      expect(stderr).to.match(/1 failing/);
+      expect(stdout).to.match(/1 failing/);
+      expect(stderr).to.equal('');
       done();
     });
   });
@@ -68,7 +70,8 @@ describe('grunt-mocha-test', function() {
   it('should cleanly catch and log net connect exceptions thrown asynchronously by Mocha so that grunt does not exit early', function(done) {
     execScenario(gruntExec, 'connectFailure', function(error, stdout, stderr) {
       expect(stdout).to.match(/Aborted due to warnings./);
-      expect(stderr).to.match(/1 failing/);
+      expect(stdout).to.match(/1 failing/);
+      expect(stderr).to.equal('');
       done();
     });
   });
@@ -78,7 +81,8 @@ describe('grunt-mocha-test', function() {
       expect(stdout).to.match(/async tests/);
       expect(stdout).to.match(/2 passing/);
       expect(stdout).to.match(/Aborted due to warnings./);
-      expect(stderr).to.match(/1 failing/);
+      expect(stdout).to.match(/1 failing/);
+      expect(stderr).to.equal('');
       done();
     });
   });
@@ -189,8 +193,9 @@ describe('grunt-mocha-test', function() {
     execScenario(gruntExec, 'ignoreLeaksOption', function(error, stdout, stderr) {
       expect(stdout).to.match(/test/);
       expect(stdout).to.match(/Aborted due to warnings./);
-      expect(stderr).to.match(/1 failing/);
-      expect(stderr).to.match(/Error: global leak detected: leak/);
+      expect(stdout).to.match(/1 failing/);
+      expect(stdout).to.match(/Error: global leak detected: leak/);
+      expect(stderr).to.equal('');
       done();
     });
   });
@@ -209,8 +214,9 @@ describe('grunt-mocha-test', function() {
     execScenario(gruntExec, 'asyncOnlyOption', function(error, stdout, stderr) {
       expect(stdout).to.match(/test/);
       expect(stdout).to.match(/Aborted due to warnings./);
-      expect(stderr).to.match(/1 failing/);
-      expect(stderr).to.match(/Error: --async-only option in use without declaring/);
+      expect(stdout).to.match(/1 failing/);
+      expect(stdout).to.match(/Error: --async-only option in use without declaring/);
+      expect(stderr).to.equal('');
       done();
     });
   });
@@ -256,8 +262,9 @@ describe('grunt-mocha-test', function() {
     execScenario(gruntExec, 'timeoutOption', function(error, stdout, stderr) {
       expect(stdout).to.match(/test/);
       expect(stdout).to.match(/Aborted due to warnings./);
-      expect(stderr).to.match(/1 failing/);
-      expect(stderr).to.match(/Error: timeout of 500ms exceeded/);
+      expect(stdout).to.match(/1 failing/);
+      expect(stdout).to.match(/Error: timeout of 500ms exceeded/);
+      expect(stderr).to.equal('');
       done();
     });
   });
@@ -366,6 +373,19 @@ describe('grunt-mocha-test', function() {
     execScenario(gruntExec, 'gruntEnvIntegration', function(error, stdout, stderr) {
       expect(stdout).to.match(/test/);
       expect(stdout).to.match(/1 passing/);
+      expect(stdout).to.match(/Done, without errors./);
+      expect(stderr).to.equal('');
+      done();
+    });
+  });
+
+  it('should work with the xunit reporter', function(done) {
+    execScenario(gruntExec, 'xunitReporter', function(error, stdout, stderr) {
+      expect(stdout).to.match(/test/);
+      expect(stdout).to.match(/tests="1"/);
+      expect(stdout).to.match(/failures="0"/);
+      expect(stdout).to.match(/errors="0"/);
+      expect(stdout).to.match(/skipped="0"/);
       expect(stdout).to.match(/Done, without errors./);
       expect(stderr).to.equal('');
       done();
