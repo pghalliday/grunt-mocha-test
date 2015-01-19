@@ -73,7 +73,13 @@ function MochaWrapper(params) {
       runDomain.on('error', mochaRunner.uncaught.bind(mochaRunner));
       runDomain.run(function() {
         mochaRunner.run(function(failureCount) {
-          callback(null, failureCount);
+          if (mochaReporter.done) {
+            mochaReporter.done(failureCount, function(failureCount) {
+               callback(null, failureCount);
+            });
+          } else {
+            callback(null, failureCount);
+          }
         });
       });
       // I wish I could just do this...
