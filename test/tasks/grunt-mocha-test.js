@@ -402,7 +402,7 @@ describe('grunt-mocha-test', function() {
 
     execScenario(gruntExec, 'reporterOptions', function(error, stdout, stderr) {
       expect(stdout).to.not.match(/test/);
-      expect(stdout).to.not.match(/tests="1"/);
+      expect(stdout).to.not.match(/tests="1000"/);
       expect(stdout).to.not.match(/failures="0"/);
       expect(stdout).to.not.match(/errors="0"/);
       expect(stdout).to.not.match(/skipped="0"/);
@@ -412,10 +412,12 @@ describe('grunt-mocha-test', function() {
       // now read the destination file
       var output = fs.readFileSync(destinationFile, 'utf8');
       expect(output).to.match(/test/);
-      expect(output).to.match(/tests="1"/);
+      expect(output).to.match(/tests="1000"/);
       expect(output).to.match(/failures="0"/);
       expect(output).to.match(/errors="0"/);
       expect(output).to.match(/skipped="0"/);
+      expect(output).to.match(/<testsuite.*>/);
+      expect(output).to.match(/<\/testsuite>/);
 
       done();
     });
