@@ -3,3 +3,4 @@ gmt:
   command: npm test
   volumes:
     - .:/code
+    - ~/.npmrc:/root/.npmrc
