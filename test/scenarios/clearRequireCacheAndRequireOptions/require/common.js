@@ -1,2 +1,2 @@
 /*global testVar:true */
-testVar = 'hello';
+global.testVar = 'hello';

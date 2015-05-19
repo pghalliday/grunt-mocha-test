@@ -10,8 +10,11 @@ module.exports = function(grunt) {
         require: 'require/common',
         clearRequireCache: true
       },
-      all: {
-        src: ['*.js']
+      first: {
+        src: ['first.js']
+      },
+      second: {
+        src: ['second.js']
       }
     }
   });

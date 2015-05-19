@@ -162,7 +162,7 @@ describe('grunt-mocha-test', function() {
   it('should support the clearRequireCacheOption with the require option', function(done) {
     execScenario(gruntExec, 'clearRequireCacheAndRequireOptions', function(error, stdout, stderr) {
       expect(stdout).to.match(/test/);
-      expect(stdout).to.match(/1 passing/);
+      expect(stdout).to.match(/2 passing/);
       expect(stdout).to.match(/Done, without errors./);
       expect(stderr).to.equal('');
       done();
