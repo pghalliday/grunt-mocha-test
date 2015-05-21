@@ -15,12 +15,7 @@
   "bugs": {
     "url": "https://github.com/pghalliday/grunt-mocha-test/issues"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/pghalliday/grunt-mocha-test/blob/master/LICENSE-MIT"
-    }
-  ],
+  "license": "MIT",
   "engines": {
     "node": ">= 0.10.4"
   },
