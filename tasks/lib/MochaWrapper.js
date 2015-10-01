@@ -35,15 +35,18 @@ function MochaWrapper(params) {
     });
   }
 
-  params.files.forEach(function(file, index, array) {
+    params.files.forEach(function(file, index, array) {
     file.src.forEach(function(src) {
+      var exclude = false;
       // Filter the files according to the exclussion pattern
       if(params.options.exclude) {
-        var exclude = [].concat(params.options.exclude).some(function(regexp) {
+        exclude = [].concat(params.options.exclude).some(function(regexp) {
             return src.match(regexp) != null;
         });
       }
-      if(!exclude) mocha.addFile.bind(mocha)(src);
+      if(!exclude) {
+        mocha.addFile.bind(mocha)(src);
+      }
     });
   });
 
