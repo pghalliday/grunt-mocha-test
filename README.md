@@ -1,3 +1,29 @@
+# Main difference
+On original `grunt-mocha-test` if you have a mocha test that use `console.log` and configuration like that 
+
+    mochaTest: {
+      'coverage': {
+        options: {
+          reporter: 'html-cov',
+          quiet: true,
+          captureFile: 'unit-tests.html',
+        },
+        src: ['test.js']
+      },
+    }
+
+    the test
+
+    describe('grunt-mocha-test', function() {
+      it('should return 1', function(done) {
+        console.log('It will out on report file');
+        done();
+      });
+    });
+
+In this case  the console output will be reported on report file, this fork  **fix it**
+
+
 # grunt-mocha-test
 
 [![Build Status](https://travis-ci.org/pghalliday/grunt-mocha-test.svg)](https://travis-ci.org/pghalliday/grunt-mocha-test)
