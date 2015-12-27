@@ -70,7 +70,10 @@ function MochaWrapper(params) {
             if (fd) {
               fs.writeSync(fd, result);
             }
-            
+            // Prevent the original process.stdout.write from executing if quiet was specified
+            if (params.options.quiet) {
+              return hooker.preempt();
+            }
           }
         });
       });
