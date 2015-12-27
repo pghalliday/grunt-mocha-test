@@ -2,6 +2,8 @@ var domain = require('domain');
 var fs = require('fs');
 var path = require('path');
 var Mocha = require('mocha');
+var hooker = require('hooker');
+var mkdirpSync = require('mkdirp').sync; 
 
 function MochaWrapper(params) {
   // If require option is specified then require that file.
@@ -53,7 +55,35 @@ function MochaWrapper(params) {
       var mochaSuite = mocha.suite;
       var mochaOptions = mocha.options;
       var mochaRunner = new Mocha.Runner(mochaSuite);
-      var mochaReporter = new mocha._reporter(mochaRunner, mochaOptions);
+      
+      var fd;
+      mochaRunner.on('end', function(){
+        if (params.options.captureFile) {
+          mkdirpSync(path.dirname(params.options.captureFile));
+          fd = fs.openSync(params.options.captureFile, 'w');
+        }
+        // Hook process.stdout.write
+        hooker.hook(process.stdout, 'write', {
+          // This gets executed before the original process.stdout.write
+          pre: function(result) {
+            // Write result to file if it was opened
+            if (fd) {
+              fs.writeSync(fd, result);
+            }
+            
+          }
+        });
+      });
+      var mochaReporter = new mocha._reporter(mochaRunner, mochaOptions, mocha);
+      mochaRunner.on('end', function(){
+        // close the file if it was opened
+        if (fd) {
+          fs.closeSync(fd);
+        }
+        // Restore process.stdout.write to its original value
+        hooker.unhook(process.stdout, 'write');
+      });
+
       mochaRunner.ignoreLeaks = false !== mochaOptions.ignoreLeaks;
       mochaRunner.asyncOnly = mochaOptions.asyncOnly;
       if (mochaOptions.grep) {
