@@ -21,7 +21,7 @@ On original `grunt-mocha-test` if you have a mocha test that use `console.log` a
       });
     });
 
-In this case  the console output will be reported on report file, this fork  **fix it**
+In this case  the console output will be reported on report file, this fork  **fix it**. To it work the reporter need to write on the `runner.on('end')` event
 
 
 # grunt-mocha-test
