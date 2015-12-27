@@ -1,19 +1,19 @@
 {
-  "name": "grunt-mocha-test",
+  "name": "grunt-mocha-test-y",
   "description": "A grunt task for running server side mocha tests",
-  "version": "0.12.7",
-  "homepage": "https://github.com/pghalliday/grunt-mocha-test",
+  "version": "0.12.8",
+  "homepage": "https://github.com/mageddo/grunt-mocha-test",
   "author": {
-    "name": "Peter Halliday",
-    "email": "pghalliday@gmail.com",
-    "url": "http://pghalliday.github.io/"
+    "name": "Elvis de Freitas",
+    "email": "edigitalb@gmail.com",
+    "url": "http://github.com/mageddo/gunt-mocha-test/"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/pghalliday/grunt-mocha-test.git"
+    "url": "git://github.com/mageddo/grunt-mocha-test.git"
   },
   "bugs": {
-    "url": "https://github.com/pghalliday/grunt-mocha-test/issues"
+    "url": "https://github.com/mageddo/grunt-mocha-test/issues"
   },
   "license": "MIT",
   "engines": {
