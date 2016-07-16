@@ -99,6 +99,24 @@ mochaTest: {
 }
 ```
 
+This is an example for the Babel 6 compiler ([babel must be configured](https://babeljs.io/docs/setup/) separately if you want to use it for something like ES6/ES2015).
+
+```
+npm install babel-register
+```
+
+```javascript
+mochaTest: {
+  test: {
+    options: {
+      reporter: 'spec',
+      require: 'babel-register'
+    },
+    src: ['test/**/*.js']
+  }
+}
+```
+
 In order to make this more user friendly, the `require` option can take either a single file/function or an array of files/functions in case you have other globals you wish to require.
 
 eg.
