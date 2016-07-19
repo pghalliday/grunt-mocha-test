@@ -2,39 +2,14 @@ var MochaWrapper = require('./lib/MochaWrapper');
 var fs = require('fs');
 var path = require('path');
 var hooker = require('hooker');
-var mkdirpSync = require('mkdirp').sync;
 
 module.exports = function(grunt) {
 
   // Helper to capture task output (adapted from tests for grunt-contrib-jshint)
   var capture = function(captureFile, quiet, run, done) {
-    var fd;
-    if (captureFile) {
-      mkdirpSync(path.dirname(captureFile));
-      fd = fs.openSync(captureFile, 'w');
-    }
-    // Hook process.stdout.write
-    hooker.hook(process.stdout, 'write', {
-      // This gets executed before the original process.stdout.write
-      pre: function(result) {
-        // Write result to file if it was opened
-        if (fd) {
-          fs.writeSync(fd, result);
-        }
-        // Prevent the original process.stdout.write from executing if quiet was specified
-        if (quiet) {
-          return hooker.preempt();
-        }
-      }
-    });
+    
     // Execute the code whose output is to be captured
     run(function(error, failureCount) {
-      // close the file if it was opened
-      if (fd) {
-        fs.closeSync(fd);
-      }
-      // Restore process.stdout.write to its original value
-      hooker.unhook(process.stdout, 'write');
       // Actually test the actually-logged stdout string to the expected value
       done(error, failureCount);
     });
@@ -89,6 +64,7 @@ module.exports = function(grunt) {
         } else {
           complete(null, failureCount);
         }
+       
       });
     }, function(error, failureCount) {
       // restore the uncaught exception handlers
