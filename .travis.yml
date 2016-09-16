@@ -1,8 +1,7 @@
 language: node_js
 node_js:
-  - "latest"
-  - "stable"
-  - "lts"
+  - "node"
+  - "lts/*"
 install:
   - npm install
 script: "npm run-script ci"
