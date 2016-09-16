@@ -1,9 +1,8 @@
 language: node_js
 node_js:
+  - "latest"
   - "stable"
-  - "4.1"
-  - "0.12"
-  - "0.10"
+  - "lts"
 install:
   - npm install
 script: "npm run-script ci"

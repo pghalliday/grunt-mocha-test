@@ -26,6 +26,17 @@ describe('grunt-mocha-test', function() {
     });
   });
 
+  it('should run tests from the supplied files respecting `only` specifiers', function(done) {
+    execScenario(gruntExec, 'only', function(error, stdout, stderr) {
+      expect(stdout).to.match(/test1/);
+      expect(stdout).to.not.match(/test2/);
+      expect(stdout).to.match(/1 passing/);
+      expect(stdout).to.match(/Done, without errors./);
+      expect(stderr).to.equal('');
+      done();
+    });
+  });
+
   it('should run tests from the supplied files with expand option', function(done) {
     execScenario(gruntExec, 'testsExpand', function(error, stdout, stderr) {
       expect(stdout).to.match(/test1/);
@@ -109,7 +120,7 @@ describe('grunt-mocha-test', function() {
 
   it('should support the colors option', function(done) {
     execScenario(gruntExec, 'colorsOption', function(error, stdout, stderr) {
-      expect(stdout).to.match(/\u001b\[4mRunning \"mochaTest:all\" \(mochaTest\) task\u001b\[24m\n\n\n  test\n\r    ✓ should be ok\n\n\n  1 passing/);
+      expect(stdout).to.match(/\u001b\[4mRunning \"mochaTest:all\" \(mochaTest\) task\u001b\[24m\n\n\n  test\n    ✓ should be ok\n\n\n  1 passing/);
       expect(stderr).to.equal('');
       done();
     });

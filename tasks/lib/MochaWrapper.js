@@ -52,10 +52,14 @@ function MochaWrapper(params) {
       }
       var mochaSuite = mocha.suite;
       var mochaOptions = mocha.options;
-      var mochaRunner = new Mocha.Runner(mochaSuite);
+      mochaOptions.files = mocha.files;
+      var mochaRunner = new Mocha.Runner(mochaSuite, mochaOptions.delay);
       var mochaReporter = new mocha._reporter(mochaRunner, mochaOptions);
-      mochaRunner.ignoreLeaks = false !== mochaOptions.ignoreLeaks;
+      mochaRunner.ignoreLeaks = mochaOptions.ignoreLeaks !== false;
+      mochaRunner.fullStackTrace = mochaOptions.fullStackTrace;
+      mochaRunner.hasOnly = mochaOptions.hasOnly;
       mochaRunner.asyncOnly = mochaOptions.asyncOnly;
+      mochaRunner.allowUncaught = mochaOptions.allowUncaught;
       if (mochaOptions.grep) {
         mochaRunner.grep(mochaOptions.grep, mochaOptions.invert);
       }
@@ -65,9 +69,10 @@ function MochaWrapper(params) {
       if (mochaOptions.growl) {
         mocha._growl(mochaRunner, mochaReporter);
       }
-      if (mocha.options.colors != null) {
-        Mocha.reporters.Base.useColors = mocha.options.colors;
+      if (mochaOptions.useColors !== undefined) {
+        Mocha.reporters.Base.useColors = mochaOptions.useColors;
       }
+      Mocha.reporters.Base.inlineDiffs = mochaOptions.useInlineDiffs;
 
       var runDomain = domain.create();
       runDomain.on('error', mochaRunner.uncaught.bind(mochaRunner));

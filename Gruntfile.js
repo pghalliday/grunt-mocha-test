@@ -60,14 +60,6 @@ module.exports = function(grunt) {
         },
         src: ['lib-cov/test/tasks/**/*.js']
       },
-      'html-cov': {
-        options: {
-          reporter: 'html-cov',
-          quiet: true,
-          captureFile: 'reports/coverage.html'
-        },
-        src: ['lib-cov/test/tasks/**/*.js']
-      },
       'mocha-lcov-reporter': {
         options: {
           reporter: 'mocha-lcov-reporter',
