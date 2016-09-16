@@ -38,19 +38,18 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "coffee-script": "^1.10.0",
-    "cover-child-process": "^0.1.6",
+    "cover-child-process": "^0.1.7",
     "grunt": "^1.0.1",
-    "grunt-blanket": "^0.0.10",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-coveralls": "^1.0.1",
     "grunt-env": "^0.4.4",
+    "grunt-istanbul": "^0.7.1",
+    "grunt-istanbul-coverage": "^0.1.4",
     "mocha": "^3.0.2",
-    "mocha-lcov-reporter": "^1.2.0",
-    "rimraf": "^2.5.0",
-    "travis-cov": "^0.2.5"
+    "rimraf": "^2.5.0"
   },
   "keywords": [
     "gruntplugin",

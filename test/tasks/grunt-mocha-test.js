@@ -4,8 +4,8 @@ var expect = require('chai').expect;
 var path = require('path');
 var fs = require('fs');
 var ChildProcess = require('cover-child-process').ChildProcess;
-var Blanket = require('cover-child-process').Blanket;
-var childProcess = new ChildProcess(new Blanket());
+var Istanbul = require('cover-child-process').Istanbul;
+var childProcess = new ChildProcess(new Istanbul());
 var gruntExec = 'node ' + path.resolve('node_modules/grunt-cli/bin/grunt');
 var rimrafSync = require('rimraf').sync;
 
@@ -113,6 +113,14 @@ describe('grunt-mocha-test', function() {
       expect(stdout).to.match(/test/);
       expect(stdout).to.match(/1 passing/);
       expect(stdout).to.match(/Done./);
+      expect(stderr).to.equal('');
+      done();
+    });
+  });
+
+  it('should support the colors option', function(done) {
+    execScenario(gruntExec, 'colorsOption', function(error, stdout, stderr) {
+      expect(stdout).to.match(/Running "mochaTest:all" \(mochaTest\) task\n\n\u001b\[0m\u001b\[0m\n\u001b\[0m  test\u001b\[0m\n  \u001b\[32m  ✓\u001b\[0m\u001b\[90m should be ok\u001b\[0m\n\n\n\u001b\[92m \u001b\[0m\u001b\[32m 1 passing/);
       expect(stderr).to.equal('');
       done();
     });

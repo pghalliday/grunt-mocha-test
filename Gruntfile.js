@@ -3,7 +3,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-blanket');
+  grunt.loadNpmTasks('grunt-istanbul');
+  grunt.loadNpmTasks('grunt-istanbul-coverage');
   grunt.loadNpmTasks('grunt-coveralls');
 
   // Add our custom tasks.
@@ -45,36 +46,49 @@ module.exports = function(grunt) {
         dest: 'lib-cov/'
       }
     },
-    blanket: {
-      tasks: {
-        src: ['tasks/'],
-        dest: 'lib-cov/tasks/'
+    instrument: {
+      files: 'tasks/**/*.js',
+      options: {
+        lazy: true,
+        basePath: 'lib-cov/'
       }
     },
     mochaTest: {
-      'spec': {
+      spec: {
         options: {
           reporter: 'spec',
-          // tests are quite slow as thy spawn node processes
+          // tests are quite slow as they spawn node processes
           timeout: 10000
         },
         src: ['lib-cov/test/tasks/**/*.js']
       },
-      'mocha-lcov-reporter': {
-        options: {
-          reporter: 'mocha-lcov-reporter',
-          quiet: true,
-          captureFile: 'reports/lcov.info'
-        },
-        src: ['lib-cov/test/tasks/**/*.js']
-      },
-      'travis-cov': {
-        options: {
-          reporter: 'travis-cov'
-        },
-        src: ['lib-cov/test/tasks/**/*.js']
+    },
+    storeCoverage: {
+      options: {
+        dir: 'reports'
       }
     },
+    makeReport: {
+      src: 'reports/**/*.json',
+      options: {
+        type: 'lcov',
+        dir: 'reports',
+        print: 'detail'
+      }
+    },
+		coverage: {
+			default: {
+				options: {
+					thresholds: {
+						'statements': 100,
+						'branches': 95,
+						'lines': 100,
+						'functions': 100
+					},
+					dir: 'reports'
+				}
+			}
+		},
     coveralls: {
       options: {
         force: true
@@ -86,7 +100,7 @@ module.exports = function(grunt) {
   });
 
   // Default task.
-  grunt.registerTask('build', ['clean', 'blanket', 'copy']);
-  grunt.registerTask('default', ['jshint', 'build', 'mochaTest']);
+  grunt.registerTask('build', ['clean', 'instrument', 'copy']);
+  grunt.registerTask('default', ['jshint', 'build', 'mochaTest', 'storeCoverage', 'makeReport', 'coverage']);
   grunt.registerTask('ci', ['default', 'coveralls']);
 };
