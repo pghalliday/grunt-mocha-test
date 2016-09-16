@@ -74,7 +74,6 @@ The following mocha options have also been tested (others may have been added si
 - globals
 - bail
 - require
-- colors (specify as "colors: true")
 - slow
 
 ### Specifying compilers

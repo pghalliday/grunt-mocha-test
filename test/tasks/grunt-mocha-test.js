@@ -20,7 +20,7 @@ describe('grunt-mocha-test', function() {
       expect(stdout).to.match(/test1/);
       expect(stdout).to.match(/test2/);
       expect(stdout).to.match(/2 passing/);
-      expect(stdout).to.match(/Done, without errors./);
+      expect(stdout).to.match(/Done./);
       expect(stderr).to.equal('');
       done();
     });
@@ -31,7 +31,7 @@ describe('grunt-mocha-test', function() {
       expect(stdout).to.match(/test1/);
       expect(stdout).to.not.match(/test2/);
       expect(stdout).to.match(/1 passing/);
-      expect(stdout).to.match(/Done, without errors./);
+      expect(stdout).to.match(/Done./);
       expect(stderr).to.equal('');
       done();
     });
@@ -42,7 +42,7 @@ describe('grunt-mocha-test', function() {
       expect(stdout).to.match(/test1/);
       expect(stdout).to.match(/test2/);
       expect(stdout).to.match(/2 passing/);
-      expect(stdout).to.match(/Done, without errors./);
+      expect(stdout).to.match(/Done./);
       expect(stderr).to.equal('');
       done();
     });
@@ -102,7 +102,7 @@ describe('grunt-mocha-test', function() {
     execScenario(gruntExec, 'requireOption', function(error, stdout, stderr) {
       expect(stdout).to.match(/test/);
       expect(stdout).to.match(/1 passing/);
-      expect(stdout).to.match(/Done, without errors./);
+      expect(stdout).to.match(/Done./);
       expect(stderr).to.equal('');
       done();
     });
@@ -112,15 +112,7 @@ describe('grunt-mocha-test', function() {
     execScenario(gruntExec + " mochaTest:cli --require=require/common", 'requireOption', function(error, stdout, stderr) {
       expect(stdout).to.match(/test/);
       expect(stdout).to.match(/1 passing/);
-      expect(stdout).to.match(/Done, without errors./);
-      expect(stderr).to.equal('');
-      done();
-    });
-  });
-
-  it('should support the colors option', function(done) {
-    execScenario(gruntExec, 'colorsOption', function(error, stdout, stderr) {
-      expect(stdout).to.match(/\u001b\[4mRunning \"mochaTest:all\" \(mochaTest\) task\u001b\[24m\n\n\n  test\n    ✓ should be ok\n\n\n  1 passing/);
+      expect(stdout).to.match(/Done./);
       expect(stderr).to.equal('');
       done();
     });
@@ -130,7 +122,7 @@ describe('grunt-mocha-test', function() {
     execScenario(gruntExec, 'requireArrayOption', function(error, stdout, stderr) {
       expect(stdout).to.match(/test/);
       expect(stdout).to.match(/1 passing/);
-      expect(stdout).to.match(/Done, without errors./);
+      expect(stdout).to.match(/Done./);
       expect(stderr).to.equal('');
       done();
     });
@@ -141,7 +133,7 @@ describe('grunt-mocha-test', function() {
       expect(stdout).to.match(/test1/);
       expect(stdout).to.match(/test2/);
       expect(stdout).to.match(/2 passing/);
-      expect(stdout).to.match(/Done, without errors./);
+      expect(stdout).to.match(/Done./);
       expect(stderr).to.equal('');
       done();
     });
@@ -151,7 +143,7 @@ describe('grunt-mocha-test', function() {
     execScenario(gruntExec, 'requireCompilersOption', function(error, stdout, stderr) {
       expect(stdout).to.match(/test coffee-script/);
       expect(stdout).to.match(/1 passing/);
-      expect(stdout).to.match(/Done, without errors./);
+      expect(stdout).to.match(/Done./);
       expect(stderr).to.equal('');
       done();
     });
@@ -164,7 +156,7 @@ describe('grunt-mocha-test', function() {
       expect(stdout).to.match(/1 passing/);
       expect(stdout).not.to.match(/0 passing/);
       expect(stdout).not.to.match(/2 passing/);
-      expect(stdout).to.match(/Done, without errors./);
+      expect(stdout).to.match(/Done./);
       expect(stderr).to.equal('');
       done();
     });
@@ -174,7 +166,7 @@ describe('grunt-mocha-test', function() {
     execScenario(gruntExec, 'clearRequireCacheAndRequireOptions', function(error, stdout, stderr) {
       expect(stdout).to.match(/test/);
       expect(stdout).to.match(/2 passing/);
-      expect(stdout).to.match(/Done, without errors./);
+      expect(stdout).to.match(/Done./);
       expect(stderr).to.equal('');
       done();
     });
@@ -184,7 +176,7 @@ describe('grunt-mocha-test', function() {
     execScenario(gruntExec, 'grepOption', function(error, stdout, stderr) {
       expect(stdout).to.match(/tests that match grep/);
       expect(stdout).to.match(/1 passing/);
-      expect(stdout).to.match(/Done, without errors./);
+      expect(stdout).to.match(/Done./);
       expect(stderr).to.equal('');
       done();
     });
@@ -194,7 +186,7 @@ describe('grunt-mocha-test', function() {
     execScenario(gruntExec, 'invertOption', function(error, stdout, stderr) {
       expect(stdout).to.match(/tests that don't match grep/);
       expect(stdout).to.match(/1 passing/);
-      expect(stdout).to.match(/Done, without errors./);
+      expect(stdout).to.match(/Done./);
       expect(stderr).to.equal('');
       done();
     });
@@ -215,7 +207,7 @@ describe('grunt-mocha-test', function() {
     execScenario(gruntExec, 'globalsOption', function(error, stdout, stderr) {
       expect(stdout).to.match(/test/);
       expect(stdout).to.match(/1 passing/);
-      expect(stdout).to.match(/Done, without errors./);
+      expect(stdout).to.match(/Done./);
       expect(stderr).to.equal('');
       done();
     });
@@ -253,7 +245,7 @@ describe('grunt-mocha-test', function() {
       expect(stdout).to.match(/test1/);
       expect(stdout).to.match(/test2/);
       expect(stdout).to.match(/2 passing/);
-      expect(stdout).to.match(/Done, without errors./);
+      expect(stdout).to.match(/Done./);
       expect(stderr).to.equal('');
       done();
     });
@@ -263,7 +255,7 @@ describe('grunt-mocha-test', function() {
     execScenario(gruntExec, 'uiOptionCustom', function(error, stdout, stderr) {
       expect(stdout).to.match(/test/);
       expect(stdout).to.match(/1 passing/);
-      expect(stdout).to.match(/Done, without errors./);
+      expect(stdout).to.match(/Done./);
       expect(stderr).to.equal('');
       done();
     });
@@ -291,7 +283,7 @@ describe('grunt-mocha-test', function() {
       expect(stdout).to.match(/test1/);
       expect(stdout).to.match(/test2/);
       expect(stdout).to.match(/2 passing/);
-      expect(stdout).to.match(/Done, without errors./);
+      expect(stdout).to.match(/Done./);
       expect(stderr).to.equal('');
       done();
     });
@@ -309,7 +301,7 @@ describe('grunt-mocha-test', function() {
       expect(stdout).to.match(/test1/);
       expect(stdout).to.match(/test2/);
       expect(stdout).to.match(/2 passing/);
-      expect(stdout).to.match(/Done, without errors./);
+      expect(stdout).to.match(/Done./);
       expect(stderr).to.equal('');
 
       // now read the destination file
@@ -332,7 +324,7 @@ describe('grunt-mocha-test', function() {
       expect(stdout).to.match(/test1/);
       expect(stdout).to.match(/test2/);
       expect(stdout).to.match(/2 passing/);
-      expect(stdout).to.match(/Done, without errors./);
+      expect(stdout).to.match(/Done./);
       expect(stderr).to.equal('');
 
       // now read the destination file
@@ -357,7 +349,7 @@ describe('grunt-mocha-test', function() {
       expect(stdout).to.not.match(/test1/);
       expect(stdout).to.not.match(/test2/);
       expect(stdout).to.not.match(/2 passing/);
-      expect(stdout).to.match(/Done, without errors./);
+      expect(stdout).to.match(/Done./);
       expect(stderr).to.equal('');
 
       // now read the destination file
@@ -373,7 +365,7 @@ describe('grunt-mocha-test', function() {
   it('should not run if the src config do not match any files', function(done) {
     execScenario(gruntExec, 'noFiles', function(error, stdout, stderr) {
       expect(stdout).to.match(/No files to check.../);
-      expect(stdout).to.match(/Done, without errors./);
+      expect(stdout).to.match(/Done./);
       expect(stdout).not.to.match(/0 passing/);
       expect(stderr).to.equal('');
       done();
@@ -384,7 +376,7 @@ describe('grunt-mocha-test', function() {
     execScenario(gruntExec, 'gruntEnvIntegration', function(error, stdout, stderr) {
       expect(stdout).to.match(/test/);
       expect(stdout).to.match(/1 passing/);
-      expect(stdout).to.match(/Done, without errors./);
+      expect(stdout).to.match(/Done./);
       expect(stderr).to.equal('');
       done();
     });
@@ -397,7 +389,7 @@ describe('grunt-mocha-test', function() {
       expect(stdout).to.match(/failures="0"/);
       expect(stdout).to.match(/errors="0"/);
       expect(stdout).to.match(/skipped="0"/);
-      expect(stdout).to.match(/Done, without errors./);
+      expect(stdout).to.match(/Done./);
       expect(stderr).to.equal('');
       done();
     });
@@ -417,7 +409,7 @@ describe('grunt-mocha-test', function() {
       expect(stdout).to.not.match(/failures="0"/);
       expect(stdout).to.not.match(/errors="0"/);
       expect(stdout).to.not.match(/skipped="0"/);
-      expect(stdout).to.match(/Done, without errors./);
+      expect(stdout).to.match(/Done./);
       expect(stderr).to.equal('');
 
       // now read the destination file
