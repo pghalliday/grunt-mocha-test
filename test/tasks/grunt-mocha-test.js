@@ -57,6 +57,17 @@ describe('grunt-mocha-test', function() {
     });
   });
 
+  it('should exit with code zero to allow structured reporters to differentiate runner failures from assertion failures', function(done) {
+    execScenario('testFailureWithNoFail', function(error, stdout, stderr) {
+      expect(stdout).to.match(/test/);
+      expect(stdout).to.match(/1\) should fail/);
+      expect(stdout).to.match(/1 failing/);
+      expect(stdout).to.match(/Done/);
+      expect(stderr).to.equal('');
+      done();
+    });
+  });
+
   it('should cleanly catch asynchronous test failures so that grunt does not exit early', function(done) {
     execScenario('asyncTestFailure', function(error, stdout, stderr) {
       expect(stdout).to.match(/Asynchronous test/);
