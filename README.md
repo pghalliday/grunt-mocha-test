@@ -422,7 +422,7 @@ npm test
 ```
 
 ## License
-Copyright &copy; 2014 Peter Halliday  
+Copyright &copy; 2016 Peter Halliday  
 Licensed under the MIT license.
 
 [![Donate Bitcoins](http://i.imgur.com/b5BZsFH.png)](bitcoin:17LtnRG4WxRLYBWzrBoEKP3F7fZx8vcAsK?amount=0.01&label=grunt-mocha-test)
