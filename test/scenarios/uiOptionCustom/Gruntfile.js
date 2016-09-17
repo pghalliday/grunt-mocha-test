@@ -1,6 +1,6 @@
+var gruntShared = require('../../helpers/grunt-shared');
 module.exports = function(grunt) {
-  grunt.loadTasks('../../../tasks');
-  grunt.initConfig({
+  gruntShared(grunt, __dirname, {
     mochaTest: {
       test:{
         options:{reporter:"spec", require:__dirname+"/example-ui.js", ui:"example-ui"},
@@ -8,5 +8,4 @@ module.exports = function(grunt) {
       }
     },
   });
-  grunt.registerTask('default', ['mochaTest']);
 };

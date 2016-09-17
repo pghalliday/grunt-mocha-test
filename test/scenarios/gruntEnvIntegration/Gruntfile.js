@@ -1,10 +1,6 @@
+var gruntShared = require('../../helpers/grunt-shared');
 module.exports = function(grunt) {
-  // Add our custom tasks.
-  grunt.loadTasks('../../../tasks');  
-  grunt.loadTasks('../../../../node_modules/grunt-env/tasks');
-
-  // Project configuration.
-  grunt.initConfig({
+  gruntShared(grunt, __dirname, {
     env: {
       test: {
         TEST: 'this is a test'
@@ -18,8 +14,5 @@ module.exports = function(grunt) {
         src: ['*.js']
       }
     }
-  });
-
-  // Default task.
-  grunt.registerTask('default', ['env', 'mochaTest']);
+  }, ['env', 'mochaTest'], ['../../../../node_modules/grunt-env/tasks']);
 };

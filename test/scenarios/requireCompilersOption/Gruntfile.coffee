@@ -1,9 +1,6 @@
+gruntShared = require '../../helpers/grunt-shared'
 module.exports = (grunt) ->
-  # Add our custom tasks.
-  grunt.loadTasks '../../../tasks'
-
-  # Project configuration.
-  grunt.initConfig
+  gruntShared(grunt, __dirname,
     mochaTest:
       options:
         reporter: 'spec',
@@ -13,6 +10,4 @@ module.exports = (grunt) ->
         ]
       all:
         src: ['test.coffee']
-
-  # Default task.
-  grunt.registerTask 'default', ['mochaTest']
+  )

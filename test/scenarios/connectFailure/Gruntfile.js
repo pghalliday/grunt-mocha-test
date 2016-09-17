@@ -1,9 +1,6 @@
+var gruntShared = require('../../helpers/grunt-shared');
 module.exports = function(grunt) {
-  // Add our custom tasks.
-  grunt.loadTasks('../../../tasks');
-
-  // Project configuration.
-  grunt.initConfig({
+  gruntShared(grunt, __dirname, {
     mochaTest: {
       options: {
         reporter: 'spec'
@@ -13,7 +10,4 @@ module.exports = function(grunt) {
       }
     }
   });
-
-  // Default task.
-  grunt.registerTask('default', ['mochaTest']);
 };

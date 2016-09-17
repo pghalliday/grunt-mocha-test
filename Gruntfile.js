@@ -26,7 +26,8 @@ module.exports = function(grunt) {
         eqnull: true,
         node: true,
         strict: false,
-        mocha: true
+        mocha: true,
+        esversion: 6
       },
       all: {
         src: ['grunt.js', 'tasks/**/*.js', 'test/**/*.js']
@@ -63,11 +64,6 @@ module.exports = function(grunt) {
         src: ['lib-cov/test/tasks/**/*.js']
       },
     },
-    storeCoverage: {
-      options: {
-        dir: 'reports'
-      }
-    },
     makeReport: {
       src: 'reports/**/*.json',
       options: {
@@ -101,6 +97,6 @@ module.exports = function(grunt) {
 
   // Default task.
   grunt.registerTask('build', ['clean', 'instrument', 'copy']);
-  grunt.registerTask('default', ['jshint', 'build', 'mochaTest', 'storeCoverage', 'makeReport', 'coverage']);
+  grunt.registerTask('default', ['jshint', 'build', 'mochaTest', 'makeReport', 'coverage']);
   grunt.registerTask('ci', ['default', 'coveralls']);
 };
