@@ -16,14 +16,6 @@ Install next to your project's Gruntfile.js with:
 npm install grunt-mocha-test --save-dev
 ```
 
-Note that due to some dependencies using newer features of `npm` it is necessary to update `npm` if still using the default version that ships with node 0.8. This can be done as follows:
-
-```
-npm update npm -g 
-```
-
-On some systems it may be necessary to run this with `sudo`
-
 ### Running tests
 
 Here is a simple example gruntfile if you just want to run tests
