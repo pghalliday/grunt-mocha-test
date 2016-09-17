@@ -95,6 +95,8 @@ module.exports = function(grunt) {
       restore();
       if (error) {
         done(false);
+      } else if (options.noFail) {
+        done(true);
       } else {
         done(failureCount === 0);
       }
