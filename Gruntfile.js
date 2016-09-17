@@ -72,19 +72,19 @@ module.exports = function(grunt) {
         print: 'detail'
       }
     },
-		coverage: {
-			default: {
-				options: {
-					thresholds: {
-						'statements': 100,
-						'branches': 95,
-						'lines': 100,
-						'functions': 100
-					},
-					dir: 'reports'
-				}
-			}
-		},
+    coverage: {
+      default: {
+        options: {
+          thresholds: {
+            'statements': 100,
+            'branches': 95,
+            'lines': 100,
+            'functions': 100
+          },
+          dir: 'reports'
+        }
+      }
+    },
     coveralls: {
       options: {
         force: true
