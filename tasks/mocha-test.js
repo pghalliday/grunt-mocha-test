@@ -65,7 +65,7 @@ module.exports = function(grunt) {
     // https://github.com/gregrperkins/grunt-mocha-hack
     // This time we are preventing grunt handling asynchronous
     // exceptions that are thrown when handling asynchronous exceptions
-    // (I think) - See the `asyncSuperTest` scenario
+    // (I think)
     var uncaughtExceptionHandlers = process.listeners('uncaughtException');
     process.removeAllListeners('uncaughtException');
     var unmanageExceptions = function() {
