@@ -41,57 +41,9 @@ function MochaWrapper(params) {
 
   this.run = function(callback) {
     try {
-      // This hack is a copy of the hack used in
-      // https://github.com/gregrperkins/grunt-mocha-hack
-      // to work around the issue that mocha lets uncaught exceptions
-      // escape and grunt as of version 0.4.x likes to catch uncaught
-      // exceptions and exit. It's nasty and requires intimate knowledge
-      // of Mocha internals
-      if (mocha.files.length) {
-        mocha.loadFiles();
-      }
-      var mochaSuite = mocha.suite;
-      var mochaOptions = mocha.options;
-      mochaOptions.files = mocha.files;
-      var mochaRunner = new Mocha.Runner(mochaSuite, mochaOptions.delay);
-      var mochaReporter = new mocha._reporter(mochaRunner, mochaOptions);
-      mochaRunner.ignoreLeaks = mochaOptions.ignoreLeaks !== false;
-      mochaRunner.fullStackTrace = mochaOptions.fullStackTrace;
-      mochaRunner.hasOnly = mochaOptions.hasOnly;
-      mochaRunner.asyncOnly = mochaOptions.asyncOnly;
-      mochaRunner.allowUncaught = mochaOptions.allowUncaught;
-      if (mochaOptions.grep) {
-        mochaRunner.grep(mochaOptions.grep, mochaOptions.invert);
-      }
-      if (mochaOptions.globals) {
-        mochaRunner.globals(mochaOptions.globals);
-      }
-      if (mochaOptions.growl) {
-        mocha._growl(mochaRunner, mochaReporter);
-      }
-      if (mochaOptions.useColors !== undefined) {
-        Mocha.reporters.Base.useColors = mochaOptions.useColors;
-      }
-      Mocha.reporters.Base.inlineDiffs = mochaOptions.useInlineDiffs;
-
-      var runDomain = domain.create();
-      runDomain.on('error', mochaRunner.uncaught.bind(mochaRunner));
-      runDomain.run(function() {
-        mochaRunner.run(function(failureCount) {
-          if (mochaReporter.done) {
-            mochaReporter.done(failureCount, function(failureCount) {
-               callback(null, failureCount);
-            });
-          } else {
-            callback(null, failureCount);
-          }
-        });
+      mocha.run(function(failureCount) {
+        callback(null, failureCount);
       });
-      // I wish I could just do this...
-      //
-      // mocha.run(function(failureCount) {
-      //   callback(null, failureCount);
-      // });
     } catch (error) {
       // catch synchronous (uncaught) exceptions thrown as a result
       // of loading the test files so that they can be reported with
