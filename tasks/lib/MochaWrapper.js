@@ -35,8 +35,19 @@ function MochaWrapper(params) {
     });
   }
 
-  params.files.forEach(function(file) {
-    file.src.forEach(mocha.addFile.bind(mocha));
+    params.files.forEach(function(file, index, array) {
+    file.src.forEach(function(src) {
+      var exclude = false;
+      // Filter the files according to the exclussion pattern
+      if(params.options.exclude) {
+        exclude = [].concat(params.options.exclude).some(function(regexp) {
+            return src.match(regexp) != null;
+        });
+      }
+      if(!exclude) {
+        mocha.addFile.bind(mocha)(src);
+      }
+    });
   });
 
   this.run = function(callback) {
