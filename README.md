@@ -55,7 +55,7 @@ The following options are specific to `grunt-mocha-test` (ie. not mocha options)
 - `captureFile` - specify a file to capture all output to (will include any output from `console.log`)
 - `quiet` - `true` to not output anything to console (normally used with the `captureFile` option when console output would not be human readable)
 - `clearRequireCache` - `true` to clear the require cache before each test run (normally used with watch when not spawning each test run in a new `nodejs` context)
-- `clearCacheFilter` - `function() { return true/false }` to say which files should remain in cache. Only works with clearRequireCach set to `true`)
+- `clearCacheFilter` - `function() { return true/false }` to say which files should remain in cache. Only works with `clearRequireCache` set to `true`)
 - `noFail` - `true` to prevent the task failing on failed tests. Useful for CI setups where test reports are processed separately. Will still fail on other errors
 
 The following mocha options have also been tested (others may have been added since the time of writing through changes to mocha)
