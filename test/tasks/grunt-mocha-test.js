@@ -297,7 +297,7 @@ describe('grunt-mocha-test', function() {
       expect(stdout).to.match(/test/);
       expect(stdout).to.match(/Aborted due to warnings./);
       expect(stdout).to.match(/1 failing/);
-      expect(stdout).to.match(/Error: timeout of 500ms exceeded/);
+      expect(stdout).to.match(/Error: Timeout of 500ms exceeded/);
       expect(stderr).to.equal('');
       done();
     });
