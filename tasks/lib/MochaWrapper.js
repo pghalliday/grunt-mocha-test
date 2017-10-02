@@ -29,9 +29,12 @@ function MochaWrapper(params) {
 
   var mocha = new Mocha(params.options);
 
+  var filterFunc = params.options.clearCacheFilter;
   if (params.options.clearRequireCache === true) {
     Object.keys(require.cache).forEach(function (key) {
-      delete require.cache[key];
+      if (typeof filterFunc !== 'function' || !filterFunc(key)) {
+        delete require.cache[key];
+      }
     });
   }
 
