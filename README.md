@@ -1,10 +1,7 @@
 # grunt-mocha-test
 
-[![Build Status](https://travis-ci.org/pghalliday/grunt-mocha-test.svg)](https://travis-ci.org/pghalliday/grunt-mocha-test)
+[![Build Status](https://travis-ci.org/pghalliday/grunt-mocha-test.svg?branch=master)](https://travis-ci.org/pghalliday/grunt-mocha-test)
 [![Coverage Status](https://img.shields.io/coveralls/pghalliday/grunt-mocha-test.svg)](https://coveralls.io/r/pghalliday/grunt-mocha-test?branch=master)
-[![Dependency Status](https://david-dm.org/pghalliday/grunt-mocha-test.svg?theme=shields.io)](https://david-dm.org/pghalliday/grunt-mocha-test)
-[![devDependency Status](https://david-dm.org/pghalliday/grunt-mocha-test/dev-status.svg?theme=shields.io)](https://david-dm.org/pghalliday/grunt-mocha-test#info=devDependencies)
-[![peerDependency Status](https://david-dm.org/pghalliday/grunt-mocha-test/peer-status.svg?theme=shields.io)](https://david-dm.org/pghalliday/grunt-mocha-test#info=peerDependencies)
 
 A grunt task for running server side mocha tests
 
