@@ -69,8 +69,15 @@ module.exports = function(grunt) {
     var uncaughtExceptionHandlers = process.listeners('uncaughtException');
     process.removeAllListeners('uncaughtException');
     var unmanageExceptions = function() {
-      uncaughtExceptionHandlers.forEach(
-        process.on.bind(process, 'uncaughtException'));
+      // Fix for leaking exception handlers suggested by https://github.com/davedoesdev
+      var names = process.listeners('uncaughtException').map(function (f) {
+        return f.name;
+      });
+      uncaughtExceptionHandlers.forEach(function (f) {
+        if (names.indexOf(f.name) < 0) {
+          process.on('uncaughtException', f);
+        }
+      });
     };
     var restore = function() {
       unmanageExceptions();
