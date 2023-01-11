@@ -48,7 +48,7 @@
     "grunt-env": "^0.4.4",
     "grunt-istanbul": "^0.7.1",
     "grunt-istanbul-coverage": "^0.1.4",
-    "mocha": "^3.0.2",
+    "mocha": "^10.2.0",
     "rimraf": "^2.5.0"
   },
   "keywords": [
